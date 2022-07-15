@@ -1,11 +1,11 @@
-class Prova():
-    def __init__(self,nome,cognome):
-        self.nome=nome
-        self.cognome=cognome
-
-    def stampa(self):
-        return f"nome: {self.nome}, cognome: {self.cognome}"
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from menu import Ui_MainWindow
 
 
-ogg=Prova("ivan","pacenti")
-print(ogg.stampa())
+
+app = QApplication([])
+window = QMainWindow()
+menu = Ui_MainWindow()
+menu.setupUi(window)
+window.show()
+app.exec()

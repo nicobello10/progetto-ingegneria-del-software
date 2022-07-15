@@ -9,12 +9,12 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from Viste.registrazione_utente import RegistrazioneUtente
+from Viste.login import Login
 
 class Ui_Form(object):
     def gestioneUtenti(self):
         self.window=QtWidgets.QMainWindow()
-        self.ui=RegistrazioneUtente()
+        self.ui=Login()
         self.ui.setupUi(self.window)
         self.window.show()
     def setupUi(self, Form):

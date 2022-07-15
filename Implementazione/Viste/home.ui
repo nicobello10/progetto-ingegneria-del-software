@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="gestionePrenotazioni">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -26,12 +26,12 @@
     <string>Gestione Prenotazioni</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="gestioneUtente">
    <property name="geometry">
     <rect>
-     <x>220</x>
+     <x>210</x>
      <y>30</y>
-     <width>161</width>
+     <width>171</width>
      <height>111</height>
     </rect>
    </property>
@@ -39,7 +39,7 @@
     <string>Gestione Utente</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_3">
+  <widget class="QPushButton" name="gestioneTesseramento">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -52,7 +52,7 @@
     <string>Gestione Tesseramento</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_4">
+  <widget class="QPushButton" name="gestioneTorneo">
    <property name="geometry">
     <rect>
      <x>210</x>

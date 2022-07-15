@@ -26,7 +26,7 @@
     <string>Nome Utente</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
+  <widget class="QLineEdit" name="cognome">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -49,7 +49,7 @@
     <string>Nome</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_4">
+  <widget class="QLineEdit" name="password">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -72,7 +72,7 @@
     <string>Cognome</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_3">
+  <widget class="QLineEdit" name="nomeUtente">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -82,7 +82,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="nome">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -103,6 +103,22 @@
    </property>
    <property name="text">
     <string>Password</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="invia">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>170</y>
+     <width>113</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Invia</string>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
    </property>
   </widget>
  </widget>

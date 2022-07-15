@@ -11,34 +11,38 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class RegistrazioneUtente(object):
+class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(400, 300)
         self.label_3 = QtWidgets.QLabel(Form)
         self.label_3.setGeometry(QtCore.QRect(59, 90, 81, 20))
         self.label_3.setObjectName("label_3")
-        self.lineEdit_2 = QtWidgets.QLineEdit(Form)
-        self.lineEdit_2.setGeometry(QtCore.QRect(150, 60, 141, 21))
-        self.lineEdit_2.setObjectName("lineEdit_2")
+        self.cognome = QtWidgets.QLineEdit(Form)
+        self.cognome.setGeometry(QtCore.QRect(150, 60, 141, 21))
+        self.cognome.setObjectName("cognome")
         self.label = QtWidgets.QLabel(Form)
         self.label.setGeometry(QtCore.QRect(100, 30, 41, 16))
         self.label.setObjectName("label")
-        self.lineEdit_4 = QtWidgets.QLineEdit(Form)
-        self.lineEdit_4.setGeometry(QtCore.QRect(150, 120, 141, 21))
-        self.lineEdit_4.setObjectName("lineEdit_4")
+        self.password = QtWidgets.QLineEdit(Form)
+        self.password.setGeometry(QtCore.QRect(150, 120, 141, 21))
+        self.password.setObjectName("password")
         self.label_2 = QtWidgets.QLabel(Form)
         self.label_2.setGeometry(QtCore.QRect(80, 60, 60, 16))
         self.label_2.setObjectName("label_2")
-        self.lineEdit_3 = QtWidgets.QLineEdit(Form)
-        self.lineEdit_3.setGeometry(QtCore.QRect(150, 90, 141, 21))
-        self.lineEdit_3.setObjectName("lineEdit_3")
-        self.lineEdit = QtWidgets.QLineEdit(Form)
-        self.lineEdit.setGeometry(QtCore.QRect(150, 30, 141, 21))
-        self.lineEdit.setObjectName("lineEdit")
+        self.nomeUtente = QtWidgets.QLineEdit(Form)
+        self.nomeUtente.setGeometry(QtCore.QRect(150, 90, 141, 21))
+        self.nomeUtente.setObjectName("nomeUtente")
+        self.nome = QtWidgets.QLineEdit(Form)
+        self.nome.setGeometry(QtCore.QRect(150, 30, 141, 21))
+        self.nome.setObjectName("nome")
         self.label_4 = QtWidgets.QLabel(Form)
         self.label_4.setGeometry(QtCore.QRect(80, 120, 60, 16))
         self.label_4.setObjectName("label_4")
+        self.invia = QtWidgets.QPushButton(Form)
+        self.invia.setGeometry(QtCore.QRect(150, 170, 113, 32))
+        self.invia.setFlat(False)
+        self.invia.setObjectName("invia")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -50,6 +54,7 @@ class RegistrazioneUtente(object):
         self.label.setText(_translate("Form", "Nome"))
         self.label_2.setText(_translate("Form", "Cognome"))
         self.label_4.setText(_translate("Form", "Password"))
+        self.invia.setText(_translate("Form", "Invia"))
 
 
 if __name__ == "__main__":

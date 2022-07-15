@@ -11,28 +11,40 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Form(object):
+class Login(object):
+    def autenticazione(self):
+        username=self.logIn.text()
+        pwd=self.password.text()
+        if(username=="ivan" ):
+            self.accessoEffettuato
+
+    def accessoEffetuato(self):
+
+        print("ciao")
+
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(491, 356)
-        self.pushButton = QtWidgets.QPushButton(Form)
-        self.pushButton.setGeometry(QtCore.QRect(120, 140, 113, 32))
-        self.pushButton.setObjectName("pushButton")
-        self.pushButton_2 = QtWidgets.QPushButton(Form)
-        self.pushButton_2.setGeometry(QtCore.QRect(280, 140, 113, 32))
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.lineEdit = QtWidgets.QLineEdit(Form)
-        self.lineEdit.setGeometry(QtCore.QRect(170, 70, 171, 21))
-        self.lineEdit.setObjectName("lineEdit")
-        self.lineEdit_2 = QtWidgets.QLineEdit(Form)
-        self.lineEdit_2.setGeometry(QtCore.QRect(170, 100, 171, 21))
-        self.lineEdit_2.setObjectName("lineEdit_2")
+        self.logIn = QtWidgets.QPushButton(Form)
+        self.logIn.setGeometry(QtCore.QRect(120, 140, 113, 32))
+        self.logIn.setObjectName("logIn")
+        self.iscriviti = QtWidgets.QPushButton(Form)
+        self.iscriviti.setGeometry(QtCore.QRect(280, 140, 113, 32))
+        self.iscriviti.setObjectName("iscriviti")
+        self.nomeUtente = QtWidgets.QLineEdit(Form)
+        self.nomeUtente.setGeometry(QtCore.QRect(170, 70, 171, 21))
+        self.nomeUtente.setObjectName("nomeUtente")
+        self.password = QtWidgets.QLineEdit(Form)
+        self.password.setGeometry(QtCore.QRect(170, 100, 171, 21))
+        self.password.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.password.setObjectName("password")
         self.label = QtWidgets.QLabel(Form)
         self.label.setGeometry(QtCore.QRect(80, 70, 81, 16))
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(Form)
         self.label_2.setGeometry(QtCore.QRect(100, 100, 60, 16))
         self.label_2.setObjectName("label_2")
+        self.logIn.clicked.connect(self.accessoEffetuato)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -40,7 +52,20 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.pushButton.setText(_translate("Form", "Login"))
-        self.pushButton_2.setText(_translate("Form", "Iscriviti"))
+        self.logIn.setText(_translate("Form", "Login"))
+        self.iscriviti.setText(_translate("Form", "Iscriviti"))
         self.label.setText(_translate("Form", "Nome utente"))
         self.label_2.setText(_translate("Form", "Password"))
+
+
+
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    Form = QtWidgets.QWidget()
+    ui = Login()
+    ui.setupUi(Form)
+    Form.show()
+    sys.exit(app.exec_())

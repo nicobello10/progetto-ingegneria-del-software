@@ -25,12 +25,25 @@ class UI_Iscrizione(object):
         campoDataNascita=self.dataNascita.text()
         nuovoUtente=Utente(campoNome,campoCognome,campoDataNascita,campoCellulare,campoPassword,campoNomeUtente)
         GestoreUtente.inserisciUtente(nuovoUtente)
-        GestoreUtente.visualizzaListaUtenti()
         self.window_conferma = QtWidgets.QDialog()
         self.ui_conferma = Ui_ConfermaIscrizione()
         self.ui_conferma.setupUi(self.window_conferma)
         self.window_conferma.show()
 
+    def modificaUtente(self):
+        print("ciao")
+        campoNome = self.nome.text()
+        campoCognome = self.cognome.text()
+        campoNomeUtente = self.nomeUtente.text()
+        campoPassword = self.password.text()
+        campoCellulare = self.cellulare.text()
+        campoDataNascita = self.dataNascita.text()
+        utenteModificato=Utente(campoNome,campoCognome,campoDataNascita,campoCellulare,campoPassword,campoNomeUtente)
+        GestoreUtente.modificaUtente(GestoreUtente.utenteConnesso,utenteModificato)
+        self.window_conferma = QtWidgets.QDialog()
+        self.ui_conferma = Ui_ConfermaIscrizione()
+        self.ui_conferma.setupUi(self.window_conferma)
+        self.window_conferma.show()
 
 
 
@@ -87,9 +100,12 @@ class UI_Iscrizione(object):
             self.password.setText(GestoreUtente.utenteConnesso.password)
             self.nomeUtente.setText(GestoreUtente.utenteConnesso.nomeUtente)
             self.cellulare.setText(GestoreUtente.utenteConnesso.cellulare)
+            self.invia.clicked.connect(self.modificaUtente)
+        else:
+            self.invia.clicked.connect(self.creaUtente)
 
-        #azioni dei pulsanti
-        self.invia.clicked.connect(self.creaUtente)
+
+
 
         self.retranslateUi(Iscrizione)
         QtCore.QMetaObject.connectSlotsByName(Iscrizione)

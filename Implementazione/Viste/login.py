@@ -21,7 +21,7 @@ class Login(object):
         pwd=self.password.text()
         for x in GestoreUtente.collectionUtenti:
             if x.nomeUtente == nomeUtente and x.password == pwd:
-                GestoreUtente.setLoginEffettuato()
+                GestoreUtente.setLoginEffettuato(x.ID)
                 GestoreUtente.setUtenteConnesso(x)
                 self.loginPopup()
 

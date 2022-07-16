@@ -4,6 +4,7 @@ class GestoreUtente():
     collectionUtenti=[]
     loginEffettuato=False
 
+
     def inserisciUtente(Utente):
         GestoreUtente.collectionUtenti.append(Utente)
 
@@ -12,3 +13,6 @@ class GestoreUtente():
 
     def setLoginEffettuato():
         GestoreUtente.loginEffettuato=True
+
+    def setUtenteConnesso(utente):
+        GestoreUtente.utenteConnesso=utente

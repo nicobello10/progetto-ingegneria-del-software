@@ -22,6 +22,7 @@ class Login(object):
         for x in GestoreUtente.collectionUtenti:
             if x.nomeUtente == nomeUtente and x.password == pwd:
                 GestoreUtente.setLoginEffettuato()
+                GestoreUtente.setUtenteConnesso(x)
                 self.loginPopup()
 
     def loginPopup(self):
@@ -37,6 +38,12 @@ class Login(object):
         self.ui_iscrizione.setupUi(self.window_iscrizione)
         self.window_iscrizione.show()
 
+    def modificaDati(self):
+        if (GestoreUtente.loginEffettuato):
+            self.window_iscrizione = QtWidgets.QMainWindow()
+            self.ui_iscrizione = UI_Iscrizione()
+            self.ui_iscrizione.setupUi(self.window_iscrizione)
+            self.window_iscrizione.show()
 
     def setupUi(self, Form):
         Form.setObjectName("Form")
@@ -67,6 +74,7 @@ class Login(object):
         #azione quando i pulsanti si cliccano
         self.logIn.clicked.connect(self.autenticazione)
         self.iscriviti.clicked.connect(self.iscrizione)
+        self.modifica.clicked.connect(self.modificaDati)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)

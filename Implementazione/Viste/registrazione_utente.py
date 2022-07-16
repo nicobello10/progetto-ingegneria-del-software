@@ -11,9 +11,11 @@
 from PyQt5 import QtCore, QtWidgets
 from Implementazione.Generali.Utente import Utente
 from Implementazione.Gestione.GestoreUtente import GestoreUtente
+from Implementazione.Viste.confermaiscrizione import Ui_ConfermaIscrizione
 
 
-class Iscrizione(object):
+class UI_Iscrizione(object):
+
     def creaUtente(self):
         campoNome=self.nome.text()
         campoCognome=self.cognome.text()
@@ -24,6 +26,14 @@ class Iscrizione(object):
         nuovoUtente=Utente(campoNome,campoCognome,campoDataNascita,campoCellulare,campoPassword,campoNomeUtente)
         GestoreUtente.inserisciUtente(nuovoUtente)
         GestoreUtente.visualizzaListaUtenti()
+        self.window_conferma = QtWidgets.QDialog()
+        self.ui_conferma = Ui_ConfermaIscrizione()
+        self.ui_conferma.setupUi(self.window_conferma)
+        self.window_conferma.show()
+
+
+
+
 
 
     def setupUi(self, Iscrizione):
@@ -41,6 +51,7 @@ class Iscrizione(object):
         self.password = QtWidgets.QLineEdit(Iscrizione)
         self.password.setGeometry(QtCore.QRect(150, 120, 141, 21))
         self.password.setObjectName("password")
+        self.password.setEchoMode(QtWidgets.QLineEdit.Password)
         self.label_2 = QtWidgets.QLabel(Iscrizione)
         self.label_2.setGeometry(QtCore.QRect(80, 60, 60, 16))
         self.label_2.setObjectName("label_2")
@@ -50,6 +61,12 @@ class Iscrizione(object):
         self.nome = QtWidgets.QLineEdit(Iscrizione)
         self.nome.setGeometry(QtCore.QRect(150, 30, 141, 21))
         self.nome.setObjectName("nome")
+        self.dataNascita = QtWidgets.QLineEdit(Iscrizione)
+        self.dataNascita.setGeometry(QtCore.QRect(150, 180, 141, 21))
+        self.dataNascita.setObjectName("dataNascita")
+        self.label_5 = QtWidgets.QLabel(Iscrizione)
+        self.label_5.setGeometry(QtCore.QRect(80, 150, 60, 16))
+        self.label_5.setObjectName("label_5")
         self.label_4 = QtWidgets.QLabel(Iscrizione)
         self.label_4.setGeometry(QtCore.QRect(80, 120, 60, 16))
         self.label_4.setObjectName("label_4")
@@ -57,9 +74,9 @@ class Iscrizione(object):
         self.invia.setGeometry(QtCore.QRect(150, 220, 113, 32))
         self.invia.setFlat(False)
         self.invia.setObjectName("invia")
-        self.label_5 = QtWidgets.QLabel(Iscrizione)
-        self.label_5.setGeometry(QtCore.QRect(80, 150, 60, 16))
-        self.label_5.setObjectName("label_5")
+        self.label_6 = QtWidgets.QLabel(Iscrizione)
+        self.label_6.setGeometry(QtCore.QRect(50, 180, 101, 20))
+        self.label_6.setObjectName("label_5")
         self.cellulare = QtWidgets.QLineEdit(Iscrizione)
         self.cellulare.setGeometry(QtCore.QRect(150, 150, 141, 21))
         self.cellulare.setObjectName("cellulare")
@@ -77,6 +94,7 @@ class Iscrizione(object):
         self.label.setText(_translate("Iscrizione", "Nome"))
         self.label_2.setText(_translate("Iscrizione", "Cognome"))
         self.label_4.setText(_translate("Iscrizione", "Password"))
+        self.label_6.setText(_translate("Iscrizione", "Data di nascita"))
         self.invia.setText(_translate("Iscrizione", "Invia"))
         self.label_5.setText(_translate("Iscrizione", "Cellulare"))
 

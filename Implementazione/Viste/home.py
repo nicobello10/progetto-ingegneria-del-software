@@ -25,7 +25,7 @@ class Ui_Form(object):
         self.pushButton.setGeometry(QtCore.QRect(20, 30, 171, 111))
         self.pushButton.setObjectName("pushButton")
         self.pushButton_2 = QtWidgets.QPushButton(Form)
-        self.pushButton_2.setGeometry(QtCore.QRect(220, 30, 161, 111))
+        self.pushButton_2.setGeometry(QtCore.QRect(210, 30, 171, 111))
         self.pushButton_2.setObjectName("pushButton_2")
         self.pushButton_3 = QtWidgets.QPushButton(Form)
         self.pushButton_3.setGeometry(QtCore.QRect(20, 160, 171, 111))

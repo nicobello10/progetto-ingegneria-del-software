@@ -9,32 +9,44 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from Viste.registrazione_utente import Iscrizione
+from Viste.registrazione_utente import UI_Iscrizione
+from Implementazione.Gestione.GestoreUtente import GestoreUtente
+from Implementazione.Generali.Utente import Utente
+from Implementazione.Viste.logineffettuato import Ui_logineffettuato
 
 class Login(object):
-    def accessoEffettuato(self):
-
-        print("ciao")
 
     def autenticazione(self):
-        username=self.nomeUtente.text()
+        nomeUtente=self.nomeUtente.text()
         pwd=self.password.text()
-        if(username=="ivan" ):
-            self.accessoEffettuato()
+        for x in GestoreUtente.collectionUtenti:
+            if x.nomeUtente == nomeUtente and x.password == pwd:
+                GestoreUtente.setLoginEffettuato()
+                self.loginPopup()
+
+    def loginPopup(self):
+        self.window_conferma = QtWidgets.QDialog()
+        self.ui_conferma = Ui_logineffettuato()
+        self.ui_conferma.setupUi(self.window_conferma)
+        self.window_conferma.show()
+
 
     def iscrizione(self):
         self.window_iscrizione = QtWidgets.QMainWindow()
-        self.ui_iscrizione = Iscrizione()
+        self.ui_iscrizione = UI_Iscrizione()
         self.ui_iscrizione.setupUi(self.window_iscrizione)
         self.window_iscrizione.show()
 
 
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(491, 356)
+        Form.resize(467, 269)
         self.logIn = QtWidgets.QPushButton(Form)
         self.logIn.setGeometry(QtCore.QRect(120, 140, 113, 32))
         self.logIn.setObjectName("logIn")
+        self.modifica = QtWidgets.QPushButton(Form)
+        self.modifica.setGeometry(QtCore.QRect(280, 210, 113, 32))
+        self.modifica.setObjectName("modifica")
         self.iscriviti = QtWidgets.QPushButton(Form)
         self.iscriviti.setGeometry(QtCore.QRect(280, 140, 113, 32))
         self.iscriviti.setObjectName("iscriviti")
@@ -66,6 +78,7 @@ class Login(object):
         self.iscriviti.setText(_translate("Form", "Iscriviti"))
         self.label.setText(_translate("Form", "Nome utente"))
         self.label_2.setText(_translate("Form", "Password"))
+        self.modifica.setText(_translate("Form", "Modifica"))
 
 
 

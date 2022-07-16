@@ -17,6 +17,7 @@ class Ui_Form(object):
         self.ui=Login()
         self.ui.setupUi(self.window)
         self.window.show()
+
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(400, 300)

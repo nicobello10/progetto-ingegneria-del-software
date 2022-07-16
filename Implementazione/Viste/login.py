@@ -9,18 +9,25 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from Viste.registrazione_utente import Iscrizione
 
 class Login(object):
-    def autenticazione(self):
-        username=self.logIn.text()
-        pwd=self.password.text()
-        if(username=="ivan" ):
-            self.accessoEffettuato
-
-    def accessoEffetuato(self):
+    def accessoEffettuato(self):
 
         print("ciao")
+
+    def autenticazione(self):
+        username=self.nomeUtente.text()
+        pwd=self.password.text()
+        if(username=="ivan" ):
+            self.accessoEffettuato()
+
+    def iscrizione(self):
+        self.window_iscrizione = QtWidgets.QMainWindow()
+        self.ui_iscrizione = Iscrizione()
+        self.ui_iscrizione.setupUi(self.window_iscrizione)
+        self.window_iscrizione.show()
+
 
     def setupUi(self, Form):
         Form.setObjectName("Form")
@@ -44,7 +51,10 @@ class Login(object):
         self.label_2 = QtWidgets.QLabel(Form)
         self.label_2.setGeometry(QtCore.QRect(100, 100, 60, 16))
         self.label_2.setObjectName("label_2")
-        self.logIn.clicked.connect(self.accessoEffetuato)
+
+        #azione quando i pulsanti si cliccano
+        self.logIn.clicked.connect(self.autenticazione)
+        self.iscriviti.clicked.connect(self.iscrizione)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)

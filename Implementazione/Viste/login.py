@@ -21,7 +21,7 @@ class Login(object):
         pwd=self.password.text()
         for x in GestoreUtente.collectionUtenti:
             if x.nomeUtente == nomeUtente and x.password == pwd:
-                GestoreUtente.setLoginEffettuato(x.ID)
+                GestoreUtente.setLoginEffettuato()
                 GestoreUtente.setUtenteConnesso(x)
                 self.loginPopup()
 
@@ -30,6 +30,14 @@ class Login(object):
         self.ui_conferma = Ui_logineffettuato()
         self.ui_conferma.setupUi(self.window_conferma)
         self.window_conferma.show()
+
+    def logoutPopup(self):
+        if GestoreUtente.loginEffettuato==True:
+            GestoreUtente.setLogoutEffettuato()
+            self.window_conferma = QtWidgets.QDialog()
+            self.ui_conferma = Ui_logineffettuato()
+            self.ui_conferma.setupUi(self.window_conferma)
+            self.window_conferma.show()
 
 
     def iscrizione(self):
@@ -51,6 +59,9 @@ class Login(object):
         self.logIn = QtWidgets.QPushButton(Form)
         self.logIn.setGeometry(QtCore.QRect(120, 140, 113, 32))
         self.logIn.setObjectName("logIn")
+        self.logOut = QtWidgets.QPushButton(Form)
+        self.logOut.setGeometry(QtCore.QRect(120, 210, 113, 32))
+        self.logOut.setObjectName("logOut")
         self.modifica = QtWidgets.QPushButton(Form)
         self.modifica.setGeometry(QtCore.QRect(280, 210, 113, 32))
         self.modifica.setObjectName("modifica")
@@ -75,6 +86,7 @@ class Login(object):
         self.logIn.clicked.connect(self.autenticazione)
         self.iscriviti.clicked.connect(self.iscrizione)
         self.modifica.clicked.connect(self.modificaDati)
+        self.logOut.clicked.connect(self.logoutPopup)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -87,6 +99,7 @@ class Login(object):
         self.label.setText(_translate("Form", "Nome utente"))
         self.label_2.setText(_translate("Form", "Password"))
         self.modifica.setText(_translate("Form", "Modifica"))
+        self.logOut.setText(_translate("Form", "Logout"))
 
 
 

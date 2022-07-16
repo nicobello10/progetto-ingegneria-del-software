@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from Implementazione.Gestione.GestoreUtente import GestoreUtente
 
 
 class Ui_logineffettuato(object):
@@ -32,7 +33,10 @@ class Ui_logineffettuato(object):
     def retranslateUi(self, logineffettuato):
         _translate = QtCore.QCoreApplication.translate
         logineffettuato.setWindowTitle(_translate("logineffettuato", "Dialog"))
-        self.label.setText(_translate("logineffettuato", "Login Effettuato con successo"))
+        if (GestoreUtente.loginEffettuato==True):
+            self.label.setText(_translate("logineffettuato", "Login effettuato con successo"))
+        else:
+            self.label.setText(_translate("logineffettuato", "Logout effettuato con successo"))
 
 
 if __name__ == "__main__":

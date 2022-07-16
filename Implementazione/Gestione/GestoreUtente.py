@@ -3,7 +3,6 @@ from Implementazione.Generali.Utente import Utente
 class GestoreUtente():
     collectionUtenti=[]
     loginEffettuato=False
-    IDUtenteLoggato=0
 
 
     def inserisciUtente(Utente):
@@ -23,12 +22,14 @@ class GestoreUtente():
     def visualizzaListaUtenti():
         print(GestoreUtente.collectionUtenti)
 
-    def setLoginEffettuato(ID):
+    def setLoginEffettuato():
         GestoreUtente.loginEffettuato=True
-        GestoreUtente.IDUtenteLoggato=ID
 
     def setUtenteConnesso(utente):
         GestoreUtente.utenteConnesso=utente
+
+    def setLogoutEffettuato():
+        GestoreUtente.loginEffettuato = False
 
     def getUtenteConnesso(self):
         return GestoreUtente.utente

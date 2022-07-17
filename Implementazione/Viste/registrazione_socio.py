@@ -25,6 +25,7 @@ class Ui_registrazionesocio(object):
         elif self.tennis_paddle.isChecked():
             tipoTesseramento="Tennis + Paddle"
         GestoreUtente.creaTesseramento(email,codiceFiscale,tipoTesseramento)
+        self.invia.setEnabled(False)
 
 
     def setupUi(self, registrazionesocio):
@@ -59,9 +60,9 @@ class Ui_registrazionesocio(object):
         self.label_3 = QtWidgets.QLabel(self.frame)
         self.label_3.setGeometry(QtCore.QRect(20, 20, 91, 51))
         self.label_3.setObjectName("label_3")
-        self.Invia = QtWidgets.QPushButton(registrazionesocio)
-        self.Invia.setGeometry(QtCore.QRect(230, 230, 113, 32))
-        self.Invia.setObjectName("Invia")
+        self.invia = QtWidgets.QPushButton(registrazionesocio)
+        self.invia.setGeometry(QtCore.QRect(230, 230, 113, 32))
+        self.invia.setObjectName("Invia")
         self.frame.raise_()
         self.codicefiscale.raise_()
         self.label.raise_()
@@ -70,10 +71,13 @@ class Ui_registrazionesocio(object):
         self.tennis.raise_()
         self.paddle.raise_()
         self.tennis_paddle.raise_()
-        self.Invia.raise_()
+        self.invia.raise_()
 
         #azioni dei pulsanti
-        self.Invia.clicked.connect(self.tesseramento)
+        if GestoreUtente.utenteConnesso.getTesseramento() ==True:
+            self.invia.setEnabled(False)
+        else:
+            self.invia.clicked.connect(self.tesseramento)
 
         self.retranslateUi(registrazionesocio)
         QtCore.QMetaObject.connectSlotsByName(registrazionesocio)
@@ -87,7 +91,7 @@ class Ui_registrazionesocio(object):
         self.paddle.setText(_translate("registrazionesocio", "Paddle"))
         self.tennis_paddle.setText(_translate("registrazionesocio", "Tennis + Paddle"))
         self.label_3.setText(_translate("registrazionesocio", "<html><head/><body><p align=\"center\"><span style=\" font-weight:600;\">Tipo di </span></p><p align=\"center\"><span style=\" font-weight:600;\">tesseramento</span></p></body></html>"))
-        self.Invia.setText(_translate("registrazionesocio", "Invia"))
+        self.invia.setText(_translate("registrazionesocio", "Invia"))
 
 
 if __name__ == "__main__":

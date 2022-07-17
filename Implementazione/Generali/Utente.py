@@ -11,16 +11,18 @@ class Utente():
         self.dataNascita=dataNascita
         self.ID+=1
         self.cellulare=cellulare
+        self.tesserato=False
         
     def tesseramento(self, email,codiceFiscale,tipoTesseramento):
         self.tesseramento=Tesseramento(email,codiceFiscale,tipoTesseramento)
+        self.tesserato=True
 
 
     def getTesseramento(self):
-        if(self.tesseramento is None):
-            return False
-        else:
+        if self.tesserato:
             return True
+        else:
+            return False
 
     def getTipoTesseramento(self):
         return self.tesseramento.getTipoTesseramento()

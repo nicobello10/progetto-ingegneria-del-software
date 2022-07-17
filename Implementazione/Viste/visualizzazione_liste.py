@@ -26,9 +26,9 @@ class Ui_visualizzazioneliste(object):
         self.tabellautenti = QtWidgets.QTableWidget(visualizzazioneliste)
         self.tabellautenti.setGeometry(QtCore.QRect(40, 10, 641, 261))
         self.tabellautenti.setObjectName("tabellautenti")
-        self.tabellautenti.setColumnCount(6)
+        self.tabellautenti.setColumnCount(7)
         self.tabellautenti.setRowCount(len(GestoreUtente.collectionUtenti))
-        self.tabellautenti.setHorizontalHeaderLabels(["Nome","Cognome","Data di nascita","Cellulare","Username","Password"])
+        self.tabellautenti.setHorizontalHeaderLabels(["Nome","Cognome","Data di nascita","Cellulare","Username","Password","Socio"])
         self.retranslateUi(visualizzazioneliste)
         self.buttonBox.accepted.connect(visualizzazioneliste.accept) # type: ignore
         self.buttonBox.rejected.connect(visualizzazioneliste.reject) # type: ignore
@@ -46,6 +46,8 @@ class Ui_visualizzazioneliste(object):
             self.tabellautenti.setItem(i, 4, item)
             item = QTableWidgetItem(GestoreUtente.collectionUtenti[i].password)
             self.tabellautenti.setItem(i, 5, item)
+            item = QTableWidgetItem(str(GestoreUtente.collectionUtenti[i].getTesseramento()))
+            self.tabellautenti.setItem(i, 6, item)
 
 
     def retranslateUi(self, visualizzazioneliste):

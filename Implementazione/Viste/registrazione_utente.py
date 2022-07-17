@@ -64,7 +64,7 @@ class UI_Iscrizione(object):
         self.password = QtWidgets.QLineEdit(Iscrizione)
         self.password.setGeometry(QtCore.QRect(150, 120, 141, 21))
         self.password.setObjectName("password")
-        #self.password.setEchoMode(QtWidgets.QLineEdit.Password)
+        self.password.setEchoMode(QtWidgets.QLineEdit.Password)
         self.label_2 = QtWidgets.QLabel(Iscrizione)
         self.label_2.setGeometry(QtCore.QRect(80, 60, 60, 16))
         self.label_2.setObjectName("label_2")
@@ -104,9 +104,11 @@ class UI_Iscrizione(object):
         else:
             self.invia.clicked.connect(self.creaUtente)
 
-
-
-
+        Iscrizione.setTabOrder(self.nome, self.cognome)
+        Iscrizione.setTabOrder(self.cognome, self.nomeUtente)
+        Iscrizione.setTabOrder(self.nomeUtente, self.password)
+        Iscrizione.setTabOrder(self.password, self.cellulare)
+        Iscrizione.setTabOrder(self.cellulare, self.dataNascita)
         self.retranslateUi(Iscrizione)
         QtCore.QMetaObject.connectSlotsByName(Iscrizione)
 

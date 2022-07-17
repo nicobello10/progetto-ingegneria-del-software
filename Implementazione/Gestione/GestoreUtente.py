@@ -24,6 +24,7 @@ class GestoreUtente():
 
     def setLoginEffettuato():
         GestoreUtente.loginEffettuato=True
+        #GestoreUtente.utenteConnesso=utente
 
     def setUtenteConnesso(utente):
         GestoreUtente.utenteConnesso=utente
@@ -33,3 +34,7 @@ class GestoreUtente():
 
     def getUtenteConnesso(self):
         return GestoreUtente.utente
+
+    def creaTesseramento(email,codiceFiscale,tipoTesseramento):
+        GestoreUtente.utenteConnesso.tesseramento(email,codiceFiscale,tipoTesseramento)
+        print(GestoreUtente.utenteConnesso.getTipoTesseramento())

@@ -9,31 +9,54 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from Viste.login import Login
+from Implementazione.Viste.login import Login
+from Implementazione.Viste.registrazione_socio import Ui_registrazionesocio
+from Implementazione.Gestione.GestoreUtente import GestoreUtente
+from Implementazione.Viste.gestione_organizzazione import Ui_gestioneOrganizzazione
 
 class Ui_Form(object):
-    def gestioneUtenti(self):
+    def gestioneUtente(self):
         self.window=QtWidgets.QMainWindow()
         self.ui=Login()
         self.ui.setupUi(self.window)
         self.window.show()
 
+    def gestioneTesseramento(self):
+        if GestoreUtente.loginEffettuato == True:
+            self.window=QtWidgets.QWidget()
+            self.ui=Ui_registrazionesocio()
+            self.ui.setupUi(self.window)
+            self.window.show()
+
+    def gestioneOrganizzazione(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Ui_gestioneOrganizzazione()
+        self.ui.setupUi(self.window)
+        self.window.show()
+
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(400, 300)
-        self.pushButton = QtWidgets.QPushButton(Form)
-        self.pushButton.setGeometry(QtCore.QRect(20, 30, 171, 111))
-        self.pushButton.setObjectName("pushButton")
-        self.pushButton_2 = QtWidgets.QPushButton(Form)
-        self.pushButton_2.setGeometry(QtCore.QRect(210, 30, 171, 111))
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.pushButton_3 = QtWidgets.QPushButton(Form)
-        self.pushButton_3.setGeometry(QtCore.QRect(20, 160, 171, 111))
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.pushButton_4 = QtWidgets.QPushButton(Form)
-        self.pushButton_4.setGeometry(QtCore.QRect(210, 160, 171, 111))
-        self.pushButton_4.setObjectName("pushButton_4")
-        self.pushButton_2.clicked.connect(self.gestioneUtenti)
+        Form.resize(400, 405)
+        self.gestioneprenotazioni = QtWidgets.QPushButton(Form)
+        self.gestioneprenotazioni.setGeometry(QtCore.QRect(20, 30, 171, 111))
+        self.gestioneprenotazioni.setObjectName("gestionePrenotazioni")
+        self.gestioneutente = QtWidgets.QPushButton(Form)
+        self.gestioneutente.setGeometry(QtCore.QRect(210, 30, 171, 111))
+        self.gestioneutente.setObjectName("gestioneUtente")
+        self.gestionetesseramento = QtWidgets.QPushButton(Form)
+        self.gestionetesseramento.setGeometry(QtCore.QRect(20, 160, 171, 111))
+        self.gestionetesseramento.setObjectName("gestioneTesseramento")
+        self.gestionetorneo = QtWidgets.QPushButton(Form)
+        self.gestionetorneo.setGeometry(QtCore.QRect(210, 160, 171, 111))
+        self.gestionetorneo.setObjectName("gestioneTorneo")
+        self.gestioneorganizzazione = QtWidgets.QPushButton(Form)
+        self.gestioneorganizzazione.setGeometry(QtCore.QRect(50, 290, 301, 111))
+        self.gestioneorganizzazione.setObjectName("gestioneOrganizzazione")
+
+        #azioni dei pulsanti
+        self.gestioneutente.clicked.connect(self.gestioneUtente)
+        self.gestionetesseramento.clicked.connect(self.gestioneTesseramento)
+        self.gestioneorganizzazione.clicked.connect(self.gestioneOrganizzazione)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -41,10 +64,11 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.pushButton.setText(_translate("Form", "Gestione Prenotazioni"))
-        self.pushButton_2.setText(_translate("Form", "Gestione Utente"))
-        self.pushButton_3.setText(_translate("Form", "Gestione Tesseramento"))
-        self.pushButton_4.setText(_translate("Form", "Gestione Torneo"))
+        self.gestioneprenotazioni.setText(_translate("Form", "Gestione Prenotazioni"))
+        self.gestioneutente.setText(_translate("Form", "Gestione Utente"))
+        self.gestionetesseramento.setText(_translate("Form", "Gestione Tesseramento"))
+        self.gestionetorneo.setText(_translate("Form", "Gestione Torneo"))
+        self.gestioneorganizzazione.setText(_translate("Form", "Gestione Organizzazione"))
 
 
 if __name__ == "__main__":

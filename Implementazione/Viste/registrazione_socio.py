@@ -9,59 +9,92 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from Implementazione.Gestione.GestoreUtente import GestoreUtente
 
 
-class Ui_Form(object):
-    def setupUi(self, Form):
-        Form.setObjectName("Form")
-        Form.resize(400, 300)
-        self.lineEdit = QtWidgets.QLineEdit(Form)
-        self.lineEdit.setGeometry(QtCore.QRect(172, 30, 141, 21))
-        self.lineEdit.setObjectName("lineEdit")
-        self.label = QtWidgets.QLabel(Form)
+class Ui_registrazionesocio(object):
+
+    def tesseramento(self):
+        tipoTesseramento=""
+        codiceFiscale=self.codicefiscale.text()
+        email=self.email.text()
+        if self.tennis.isChecked():
+            tipoTesseramento="Tennis"
+        elif self.paddle.isChecked():
+            tipoTesseramento="Paddle"
+        elif self.tennis_paddle.isChecked():
+            tipoTesseramento="Tennis + Paddle"
+        GestoreUtente.creaTesseramento(email,codiceFiscale,tipoTesseramento)
+
+
+    def setupUi(self, registrazionesocio):
+        registrazionesocio.setObjectName("registrazionesocio")
+        registrazionesocio.resize(400, 300)
+        self.codicefiscale = QtWidgets.QLineEdit(registrazionesocio)
+        self.codicefiscale.setGeometry(QtCore.QRect(172, 30, 141, 21))
+        self.codicefiscale.setObjectName("codicefiscale")
+        self.label = QtWidgets.QLabel(registrazionesocio)
         self.label.setGeometry(QtCore.QRect(69, 30, 91, 20))
         self.label.setObjectName("label")
-        self.label_2 = QtWidgets.QLabel(Form)
+        self.label_2 = QtWidgets.QLabel(registrazionesocio)
         self.label_2.setGeometry(QtCore.QRect(110, 60, 41, 20))
         self.label_2.setObjectName("label_2")
-        self.lineEdit_2 = QtWidgets.QLineEdit(Form)
-        self.lineEdit_2.setGeometry(QtCore.QRect(173, 60, 141, 21))
-        self.lineEdit_2.setObjectName("lineEdit_2")
-        self.radioButton = QtWidgets.QRadioButton(Form)
-        self.radioButton.setGeometry(QtCore.QRect(210, 100, 100, 20))
-        self.radioButton.setObjectName("radioButton")
-        self.radioButton_2 = QtWidgets.QRadioButton(Form)
-        self.radioButton_2.setGeometry(QtCore.QRect(210, 120, 100, 20))
-        self.radioButton_2.setObjectName("radioButton_2")
-        self.radioButton_3 = QtWidgets.QRadioButton(Form)
-        self.radioButton_3.setGeometry(QtCore.QRect(210, 140, 121, 20))
-        self.radioButton_3.setObjectName("radioButton_3")
-        self.frame = QtWidgets.QFrame(Form)
+        self.email = QtWidgets.QLineEdit(registrazionesocio)
+        self.email.setGeometry(QtCore.QRect(173, 60, 141, 21))
+        self.email.setObjectName("email")
+        self.tennis = QtWidgets.QRadioButton(registrazionesocio)
+        self.tennis.setGeometry(QtCore.QRect(210, 100, 100, 20))
+        self.tennis.setObjectName("tennis")
+        self.paddle = QtWidgets.QRadioButton(registrazionesocio)
+        self.paddle.setGeometry(QtCore.QRect(210, 120, 100, 20))
+        self.paddle.setObjectName("paddle")
+        self.tennis_paddle = QtWidgets.QRadioButton(registrazionesocio)
+        self.tennis_paddle.setGeometry(QtCore.QRect(210, 140, 121, 20))
+        self.tennis_paddle.setObjectName("tennis_paddle")
+        self.frame = QtWidgets.QFrame(registrazionesocio)
         self.frame.setGeometry(QtCore.QRect(70, 90, 261, 91))
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
         self.label_3 = QtWidgets.QLabel(self.frame)
-        self.label_3.setGeometry(QtCore.QRect(10, 10, 91, 51))
+        self.label_3.setGeometry(QtCore.QRect(20, 20, 91, 51))
         self.label_3.setObjectName("label_3")
+        self.Invia = QtWidgets.QPushButton(registrazionesocio)
+        self.Invia.setGeometry(QtCore.QRect(230, 230, 113, 32))
+        self.Invia.setObjectName("Invia")
         self.frame.raise_()
-        self.lineEdit.raise_()
+        self.codicefiscale.raise_()
         self.label.raise_()
         self.label_2.raise_()
-        self.lineEdit_2.raise_()
-        self.radioButton.raise_()
-        self.radioButton_2.raise_()
-        self.radioButton_3.raise_()
+        self.email.raise_()
+        self.tennis.raise_()
+        self.paddle.raise_()
+        self.tennis_paddle.raise_()
+        self.Invia.raise_()
 
-        self.retranslateUi(Form)
-        QtCore.QMetaObject.connectSlotsByName(Form)
+        #azioni dei pulsanti
+        self.Invia.clicked.connect(self.tesseramento)
 
-    def retranslateUi(self, Form):
+        self.retranslateUi(registrazionesocio)
+        QtCore.QMetaObject.connectSlotsByName(registrazionesocio)
+
+    def retranslateUi(self, registrazionesocio):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
-        self.label.setText(_translate("Form", "Codice Fiscale"))
-        self.label_2.setText(_translate("Form", "E-mail"))
-        self.radioButton.setText(_translate("Form", "Tennis"))
-        self.radioButton_2.setText(_translate("Form", "Paddle"))
-        self.radioButton_3.setText(_translate("Form", "Tennis + Paddle"))
-        self.label_3.setText(_translate("Form", "<html><head/><body><p align=\"center\"><span style=\" font-weight:600;\">Tipo di </span></p><p align=\"center\"><span style=\" font-weight:600;\">tesseramento</span></p></body></html>"))
+        registrazionesocio.setWindowTitle(_translate("registrazionesocio", "Form"))
+        self.label.setText(_translate("registrazionesocio", "Codice Fiscale"))
+        self.label_2.setText(_translate("registrazionesocio", "E-mail"))
+        self.tennis.setText(_translate("registrazionesocio", "Tennis"))
+        self.paddle.setText(_translate("registrazionesocio", "Paddle"))
+        self.tennis_paddle.setText(_translate("registrazionesocio", "Tennis + Paddle"))
+        self.label_3.setText(_translate("registrazionesocio", "<html><head/><body><p align=\"center\"><span style=\" font-weight:600;\">Tipo di </span></p><p align=\"center\"><span style=\" font-weight:600;\">tesseramento</span></p></body></html>"))
+        self.Invia.setText(_translate("registrazionesocio", "Invia"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    registrazionesocio = QtWidgets.QWidget()
+    ui = Ui_registrazionesocio()
+    ui.setupUi(registrazionesocio)
+    registrazionesocio.show()
+    sys.exit(app.exec_())

@@ -1,3 +1,6 @@
+from Implementazione.Generali.Tesseramento import Tesseramento
+
+
 class Utente():
     ID=0
     def __init__(self, nome, cognome, dataNascita, cellulare, password,nomeUtente):
@@ -9,4 +12,15 @@ class Utente():
         self.ID+=1
         self.cellulare=cellulare
         
-    
+    def tesseramento(self, email,codiceFiscale,tipoTesseramento):
+        self.tesseramento=Tesseramento(email,codiceFiscale,tipoTesseramento)
+
+
+    def getTesseramento(self):
+        if(self.tesseramento is None):
+            return False
+        else:
+            return True
+
+    def getTipoTesseramento(self):
+        return self.tesseramento.getTipoTesseramento()

@@ -17,14 +17,14 @@ from Implementazione.Gestione.GestoreUtente import GestoreUtente
 class Ui_visualizzazioneliste(object):
     def setupUi(self, visualizzazioneliste):
         visualizzazioneliste.setObjectName("visualizzazioneliste")
-        visualizzazioneliste.resize(735, 334)
+        visualizzazioneliste.resize(822, 334)
         self.buttonBox = QtWidgets.QDialogButtonBox(visualizzazioneliste)
         self.buttonBox.setGeometry(QtCore.QRect(340, 290, 341, 32))
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
         self.tabellautenti = QtWidgets.QTableWidget(visualizzazioneliste)
-        self.tabellautenti.setGeometry(QtCore.QRect(40, 10, 641, 261))
+        self.tabellautenti.setGeometry(QtCore.QRect(40, 10, 741, 251))
         self.tabellautenti.setObjectName("tabellautenti")
         self.tabellautenti.setColumnCount(7)
         self.tabellautenti.setRowCount(len(GestoreUtente.collectionUtenti))

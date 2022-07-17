@@ -29,13 +29,13 @@
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
-  <widget class="QListView" name="listautenti">
+  <widget class="QTableWidget" name="tabellautenti">
    <property name="geometry">
     <rect>
      <x>25</x>
-     <y>20</y>
+     <y>11</y>
      <width>341</width>
-     <height>211</height>
+     <height>191</height>
     </rect>
    </property>
   </widget>

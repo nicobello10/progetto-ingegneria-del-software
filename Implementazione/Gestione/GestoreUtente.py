@@ -7,6 +7,7 @@ class GestoreUtente():
 
     def inserisciUtente(Utente):
         GestoreUtente.collectionUtenti.append(Utente)
+        print(len(GestoreUtente.collectionUtenti))
 
     def modificaUtente(utente,utentemodificato):
         for index, item in enumerate(GestoreUtente.collectionUtenti):
@@ -38,3 +39,6 @@ class GestoreUtente():
     def creaTesseramento(email,codiceFiscale,tipoTesseramento):
         GestoreUtente.utenteConnesso.tesseramento(email,codiceFiscale,tipoTesseramento)
         print(GestoreUtente.utenteConnesso.getTipoTesseramento())
+
+    def getCollectionUtenti():
+        return GestoreUtente.collectionUtenti

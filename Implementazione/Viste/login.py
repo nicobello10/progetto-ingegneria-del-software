@@ -25,6 +25,8 @@ class Login(object):
                 GestoreUtente.setLoginEffettuato()
                 GestoreUtente.setUtenteConnesso(x)
                 self.loginPopup()
+                self.logIn.setEnabled(False)
+                self.logOut.setEnabled(True)
 
 
     def loginPopup(self):
@@ -40,6 +42,8 @@ class Login(object):
             self.ui_conferma = Ui_logineffettuato()
             self.ui_conferma.setupUi(self.window_conferma)
             self.window_conferma.show()
+            self.logIn.setEnabled(True)
+            self.logOut.setEnabled(False)
 
 
     def iscrizione(self):
@@ -83,6 +87,14 @@ class Login(object):
         self.label_2 = QtWidgets.QLabel(Form)
         self.label_2.setGeometry(QtCore.QRect(100, 100, 60, 16))
         self.label_2.setObjectName("label_2")
+        if(GestoreUtente.loginEffettuato):
+            self.logOut.setEnabled(True)
+            self.logIn.setEnabled(False)
+            self.nomeUtente.setText(GestoreUtente.utenteConnesso.nomeUtente)
+        else:
+            self.logOut.setEnabled(False)
+            self.logIn.setEnabled(True)
+
 
         #azione quando i pulsanti si cliccano
         self.logIn.clicked.connect(self.autenticazione)

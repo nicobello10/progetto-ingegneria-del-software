@@ -16,7 +16,7 @@ from Implementazione.Gestione.GestoreUtente import GestoreUtente
 
 
 class Ui_visualizzazioneliste(object):
-    def setupUi(self, visualizzazioneliste):
+    def setupUi(self, visualizzazioneliste, visualizzasoci):
         visualizzazioneliste.setObjectName("visualizzazioneliste")
         visualizzazioneliste.resize(822, 334)
         self.buttonBox = QtWidgets.QDialogButtonBox(visualizzazioneliste)
@@ -28,7 +28,7 @@ class Ui_visualizzazioneliste(object):
         self.tabellautenti.setGeometry(QtCore.QRect(40, 10, 741, 251))
         self.tabellautenti.setObjectName("tabellautenti")
         self.tabellautenti.setColumnCount(7)
-        self.tabellautenti.setRowCount(len(GestoreUtente.collectionUtenti)-2)
+
         self.tabellautenti.setHorizontalHeaderLabels(["Nome","Cognome","Data di nascita","Cellulare","Username","Password","Socio"])
         self.retranslateUi(visualizzazioneliste)
         self.buttonBox.accepted.connect(visualizzazioneliste.accept) # type: ignore
@@ -36,23 +36,44 @@ class Ui_visualizzazioneliste(object):
         QtCore.QMetaObject.connectSlotsByName(visualizzazioneliste)
         # griglia non modificabile
         self.tabellautenti.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
-        #sottraggo 2 che sono gli account in cima alla lista: admin e custode che non voglio si vedano
-        for i, row in enumerate(GestoreUtente.collectionUtenti,-2):
-
-            item = QTableWidgetItem(GestoreUtente.collectionUtenti[i].nome)
-            self.tabellautenti.setItem(i+2, 0, item)
-            item = QTableWidgetItem(GestoreUtente.collectionUtenti[i].cognome)
-            self.tabellautenti.setItem(i+2, 1, item)
-            item = QTableWidgetItem(GestoreUtente.collectionUtenti[i].dataNascita)
-            self.tabellautenti.setItem(i+2, 2, item)
-            item = QTableWidgetItem(GestoreUtente.collectionUtenti[i].cellulare)
-            self.tabellautenti.setItem(i+2, 3, item)
-            item = QTableWidgetItem(GestoreUtente.collectionUtenti[i].nomeUtente)
-            self.tabellautenti.setItem(i+2, 4, item)
-            item = QTableWidgetItem(GestoreUtente.collectionUtenti[i].password)
-            self.tabellautenti.setItem(i+2, 5, item)
-            item = QTableWidgetItem(str(GestoreUtente.collectionUtenti[i].getTesseramento()))
-            self.tabellautenti.setItem(i+2, 6, item)
+        if(visualizzasoci==True):
+            self.tabellautenti.setRowCount(GestoreUtente.contaSoci)
+            j = 0
+            for i in range(len(GestoreUtente.collectionUtenti)-2):
+                if GestoreUtente.collectionUtenti[i].tesserato==True:
+                    item = QTableWidgetItem(GestoreUtente.collectionUtenti[i].nome)
+                    self.tabellautenti.setItem(j, 0, item)
+                    item = QTableWidgetItem(GestoreUtente.collectionUtenti[i].cognome)
+                    self.tabellautenti.setItem(j, 1, item)
+                    item = QTableWidgetItem(GestoreUtente.collectionUtenti[i].dataNascita)
+                    self.tabellautenti.setItem(j, 2, item)
+                    item = QTableWidgetItem(GestoreUtente.collectionUtenti[i].cellulare)
+                    self.tabellautenti.setItem(j, 3, item)
+                    item = QTableWidgetItem(GestoreUtente.collectionUtenti[i].nomeUtente)
+                    self.tabellautenti.setItem(j, 4, item)
+                    item = QTableWidgetItem(GestoreUtente.collectionUtenti[i].password)
+                    self.tabellautenti.setItem(j, 5, item)
+                    item = QTableWidgetItem(str(GestoreUtente.collectionUtenti[i].getTesseramento()))
+                    self.tabellautenti.setItem(j, 6, item)
+                    j+=1
+        else:
+            self.tabellautenti.setRowCount(len(GestoreUtente.collectionUtenti) - 2)
+            #sottraggo 2 che sono gli account in cima alla lista: admin e custode che non voglio si vedano
+            for i in range(len(GestoreUtente.collectionUtenti)-2):
+                item = QTableWidgetItem(GestoreUtente.collectionUtenti[i].nome)
+                self.tabellautenti.setItem(i, 0, item)
+                item = QTableWidgetItem(GestoreUtente.collectionUtenti[i].cognome)
+                self.tabellautenti.setItem(i, 1, item)
+                item = QTableWidgetItem(GestoreUtente.collectionUtenti[i].dataNascita)
+                self.tabellautenti.setItem(i, 2, item)
+                item = QTableWidgetItem(GestoreUtente.collectionUtenti[i].cellulare)
+                self.tabellautenti.setItem(i, 3, item)
+                item = QTableWidgetItem(GestoreUtente.collectionUtenti[i].nomeUtente)
+                self.tabellautenti.setItem(i, 4, item)
+                item = QTableWidgetItem(GestoreUtente.collectionUtenti[i].password)
+                self.tabellautenti.setItem(i, 5, item)
+                item = QTableWidgetItem(str(GestoreUtente.collectionUtenti[i].getTesseramento()))
+                self.tabellautenti.setItem(i, 6, item)
 
 
 

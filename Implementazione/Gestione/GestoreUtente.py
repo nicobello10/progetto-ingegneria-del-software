@@ -9,10 +9,13 @@ class GestoreUtente():
     collectionUtenti.append(admin)
     collectionUtenti.append(custode)
     loginEffettuato=False
+    contaUtenti=0
+    contaSoci=0
 
 
     def inserisciUtente(Utente):
-        GestoreUtente.collectionUtenti.append(Utente)
+        GestoreUtente.collectionUtenti.insert(GestoreUtente.contaUtenti,Utente)
+        GestoreUtente.contaUtenti+=1
         print(len(GestoreUtente.collectionUtenti))
 
     def modificaUtente(utente,utentemodificato):
@@ -44,7 +47,7 @@ class GestoreUtente():
 
     def creaTesseramento(email,codiceFiscale,tipoTesseramento):
         GestoreUtente.utenteConnesso.tesseramento(email,codiceFiscale,tipoTesseramento)
-        print(GestoreUtente.utenteConnesso.getTipoTesseramento())
+        GestoreUtente.contaSoci+=1
 
     def getCollectionUtenti():
         return GestoreUtente.collectionUtenti

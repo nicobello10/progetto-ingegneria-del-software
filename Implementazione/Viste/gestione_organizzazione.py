@@ -15,9 +15,17 @@ from Implementazione.Viste.visualizzazione_liste import Ui_visualizzazioneliste
 class Ui_gestioneOrganizzazione(object):
 
     def visualizzaListaUtenti(self):
+        self.visualizzasoci=False
         self.windows_visualizza = QtWidgets.QDialog()
         self.ui_visualizza = Ui_visualizzazioneliste()
-        self.ui_visualizza.setupUi(self.windows_visualizza)
+        self.ui_visualizza.setupUi(self.windows_visualizza,self.visualizzasoci)
+        self.windows_visualizza.show()
+
+    def visualizzaListaSoci(self):
+        self.visualizzasoci=True
+        self.windows_visualizza = QtWidgets.QDialog()
+        self.ui_visualizza = Ui_visualizzazioneliste()
+        self.ui_visualizza.setupUi(self.windows_visualizza,self.visualizzasoci)
         self.windows_visualizza.show()
 
     def setupUi(self, gestioneOrganizzazione):
@@ -32,6 +40,7 @@ class Ui_gestioneOrganizzazione(object):
 
         #azioni dei pulsanti
         self.listautenti.clicked.connect(self.visualizzaListaUtenti)
+        self.listasoci.clicked.connect(self.visualizzaListaSoci)
 
         self.retranslateUi(gestioneOrganizzazione)
         QtCore.QMetaObject.connectSlotsByName(gestioneOrganizzazione)

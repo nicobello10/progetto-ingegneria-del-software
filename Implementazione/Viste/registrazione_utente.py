@@ -31,7 +31,6 @@ class UI_Iscrizione(object):
         self.window_conferma.show()
 
     def modificaUtente(self):
-        print("ciao")
         campoNome = self.nome.text()
         campoCognome = self.cognome.text()
         campoNomeUtente = self.nomeUtente.text()
@@ -45,11 +44,25 @@ class UI_Iscrizione(object):
         self.ui_conferma.setupUi(self.window_conferma)
         self.window_conferma.show()
 
+    def modificaUtente(self,idUtente):
+        campoNome = self.nome.text()
+        campoCognome = self.cognome.text()
+        campoNomeUtente = self.nomeUtente.text()
+        campoPassword = self.password.text()
+        campoCellulare = self.cellulare.text()
+        campoDataNascita = self.dataNascita.text()
+        utenteModificato=Utente(campoNome,campoCognome,campoDataNascita,campoCellulare,campoPassword,campoNomeUtente)
+        GestoreUtente.modificaUtente(GestoreUtente.collectionUtenti[idUtente+2],utenteModificato)
+        self.window_conferma = QtWidgets.QDialog()
+        self.ui_conferma = Ui_ConfermaIscrizione()
+        self.ui_conferma.setupUi(self.window_conferma)
+        self.window_conferma.show()
 
 
 
 
-    def setupUi(self, Iscrizione):
+
+    def setupUi(self, Iscrizione,idUtente):
         Iscrizione.setObjectName("Iscrizione")
         Iscrizione.resize(400, 300)
         self.label_3 = QtWidgets.QLabel(Iscrizione)
@@ -93,13 +106,21 @@ class UI_Iscrizione(object):
         self.cellulare = QtWidgets.QLineEdit(Iscrizione)
         self.cellulare.setGeometry(QtCore.QRect(150, 150, 141, 21))
         self.cellulare.setObjectName("cellulare")
-        if(GestoreUtente.loginEffettuato):
+        if(GestoreUtente.loginEffettuato and GestoreUtente.utenteConnesso.isAdmin==False):
             self.nome.setText(GestoreUtente.utenteConnesso.nome)
             self.cognome.setText(GestoreUtente.utenteConnesso.cognome)
             self.dataNascita.setText(GestoreUtente.utenteConnesso.dataNascita)
             self.password.setText(GestoreUtente.utenteConnesso.password)
             self.nomeUtente.setText(GestoreUtente.utenteConnesso.nomeUtente)
             self.cellulare.setText(GestoreUtente.utenteConnesso.cellulare)
+            self.invia.clicked.connect(self.modificaUtente)
+        elif(GestoreUtente.loginEffettuato and GestoreUtente.utenteConnesso.isAdmin==True):
+            self.nome.setText(GestoreUtente.collectionUtenti[idUtente].nome)
+            self.cognome.setText(GestoreUtente.collectionUtenti[idUtente].cognome)
+            self.dataNascita.setText(GestoreUtente.collectionUtenti[idUtente].dataNascita)
+            self.password.setText(GestoreUtente.collectionUtenti[idUtente].password)
+            self.nomeUtente.setText(GestoreUtente.collectionUtenti[idUtente].nomeUtente)
+            self.cellulare.setText(GestoreUtente.collectionUtenti[idUtente].cellulare)
             self.invia.clicked.connect(self.modificaUtente)
         else:
             self.invia.clicked.connect(self.creaUtente)

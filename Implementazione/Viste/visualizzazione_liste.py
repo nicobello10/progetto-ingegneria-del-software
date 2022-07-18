@@ -15,7 +15,17 @@ from PyQt5.QtCore import QEvent,Qt
 from Implementazione.Gestione.GestoreUtente import GestoreUtente
 
 
+
 class Ui_visualizzazioneliste(object):
+
+    def selezione(self):
+        from Implementazione.Viste.registrazione_utente import UI_Iscrizione
+        self.window_iscrizione = QtWidgets.QMainWindow()
+        self.ui_iscrizione = UI_Iscrizione()
+        self.ui_iscrizione.setupUi(self.window_iscrizione,self.tabellautenti.currentRow())
+        self.window_iscrizione.show()
+        self.tabellautenti.currentRow()
+
     def setupUi(self, visualizzazioneliste, visualizzasoci):
         visualizzazioneliste.setObjectName("visualizzazioneliste")
         visualizzazioneliste.resize(822, 334)
@@ -28,7 +38,7 @@ class Ui_visualizzazioneliste(object):
         self.tabellautenti.setGeometry(QtCore.QRect(40, 10, 741, 251))
         self.tabellautenti.setObjectName("tabellautenti")
         self.tabellautenti.setColumnCount(7)
-
+        self.tabellautenti.setSelectionBehavior(QtWidgets.QTableView.SelectRows)
         self.tabellautenti.setHorizontalHeaderLabels(["Nome","Cognome","Data di nascita","Cellulare","Username","Password","Socio"])
         self.retranslateUi(visualizzazioneliste)
         self.buttonBox.accepted.connect(visualizzazioneliste.accept) # type: ignore
@@ -75,6 +85,7 @@ class Ui_visualizzazioneliste(object):
                 item = QTableWidgetItem(str(GestoreUtente.collectionUtenti[i].getTesseramento()))
                 self.tabellautenti.setItem(i, 6, item)
 
+        self.tabellautenti.doubleClicked.connect(self.selezione)
 
 
 

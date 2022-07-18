@@ -1,7 +1,13 @@
 from Implementazione.Generali.Utente import Utente
 
 class GestoreUtente():
+    admin=Utente("Amministratore"," "," "," ","admin","admin")
+    admin.isAdmin=True
+    custode = Utente("Custode", " ", " ", " ", "custode", "custode")
+    custode.isCustode = True
     collectionUtenti=[]
+    collectionUtenti.append(admin)
+    collectionUtenti.append(custode)
     loginEffettuato=False
 
 
@@ -13,7 +19,7 @@ class GestoreUtente():
         for index, item in enumerate(GestoreUtente.collectionUtenti):
             if(item == utente):
                 GestoreUtente.collectionUtenti[index]=utentemodificato
-                print (f"{item} {utentemodificato}")
+                #print (f"{item} {utentemodificato}")
 
 
     def ricercaUtente(Utente):

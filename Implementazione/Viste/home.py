@@ -29,10 +29,13 @@ class Ui_Form(object):
             self.window.show()
 
     def gestioneOrganizzazione(self):
-        self.window = QtWidgets.QMainWindow()
-        self.ui = Ui_gestioneOrganizzazione()
-        self.ui.setupUi(self.window)
-        self.window.show()
+        if (GestoreUtente.loginEffettuato == True and GestoreUtente.utenteConnesso.isAdmin == True):
+            self.window = QtWidgets.QMainWindow()
+            self.ui = Ui_gestioneOrganizzazione()
+            self.ui.setupUi(self.window)
+            self.window.show()
+
+
 
     def setupUi(self, Form):
         Form.setObjectName("Form")

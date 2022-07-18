@@ -10,6 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QTableWidgetItem
+from PyQt5.QtCore import QEvent,Qt
 
 from Implementazione.Gestione.GestoreUtente import GestoreUtente
 
@@ -27,27 +28,35 @@ class Ui_visualizzazioneliste(object):
         self.tabellautenti.setGeometry(QtCore.QRect(40, 10, 741, 251))
         self.tabellautenti.setObjectName("tabellautenti")
         self.tabellautenti.setColumnCount(7)
-        self.tabellautenti.setRowCount(len(GestoreUtente.collectionUtenti))
+        self.tabellautenti.setRowCount(len(GestoreUtente.collectionUtenti)-2)
         self.tabellautenti.setHorizontalHeaderLabels(["Nome","Cognome","Data di nascita","Cellulare","Username","Password","Socio"])
         self.retranslateUi(visualizzazioneliste)
         self.buttonBox.accepted.connect(visualizzazioneliste.accept) # type: ignore
         self.buttonBox.rejected.connect(visualizzazioneliste.reject) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(visualizzazioneliste)
-        for i, row in enumerate(GestoreUtente.collectionUtenti):
+        # griglia non modificabile
+        self.tabellautenti.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        #sottraggo 2 che sono gli account in cima alla lista: admin e custode che non voglio si vedano
+        for i, row in enumerate(GestoreUtente.collectionUtenti,-2):
+
             item = QTableWidgetItem(GestoreUtente.collectionUtenti[i].nome)
-            self.tabellautenti.setItem(i, 0, item)
+            self.tabellautenti.setItem(i+2, 0, item)
             item = QTableWidgetItem(GestoreUtente.collectionUtenti[i].cognome)
-            self.tabellautenti.setItem(i, 1, item)
+            self.tabellautenti.setItem(i+2, 1, item)
             item = QTableWidgetItem(GestoreUtente.collectionUtenti[i].dataNascita)
-            self.tabellautenti.setItem(i, 2, item)
+            self.tabellautenti.setItem(i+2, 2, item)
             item = QTableWidgetItem(GestoreUtente.collectionUtenti[i].cellulare)
-            self.tabellautenti.setItem(i, 3, item)
+            self.tabellautenti.setItem(i+2, 3, item)
             item = QTableWidgetItem(GestoreUtente.collectionUtenti[i].nomeUtente)
-            self.tabellautenti.setItem(i, 4, item)
+            self.tabellautenti.setItem(i+2, 4, item)
             item = QTableWidgetItem(GestoreUtente.collectionUtenti[i].password)
-            self.tabellautenti.setItem(i, 5, item)
+            self.tabellautenti.setItem(i+2, 5, item)
             item = QTableWidgetItem(str(GestoreUtente.collectionUtenti[i].getTesseramento()))
-            self.tabellautenti.setItem(i, 6, item)
+            self.tabellautenti.setItem(i+2, 6, item)
+
+
+
+
 
 
     def retranslateUi(self, visualizzazioneliste):

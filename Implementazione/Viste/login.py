@@ -9,10 +9,11 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from Viste.registrazione_utente import UI_Iscrizione
+from Implementazione.Viste.registrazione_utente import UI_Iscrizione
 from Implementazione.Gestione.GestoreUtente import GestoreUtente
 from Implementazione.Generali.Utente import Utente
 from Implementazione.Viste.logineffettuato import Ui_logineffettuato
+
 
 class Login(object):
 
@@ -24,6 +25,7 @@ class Login(object):
                 GestoreUtente.setLoginEffettuato()
                 GestoreUtente.setUtenteConnesso(x)
                 self.loginPopup()
+
 
     def loginPopup(self):
         self.window_conferma = QtWidgets.QDialog()

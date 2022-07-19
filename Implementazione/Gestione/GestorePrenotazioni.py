@@ -24,7 +24,8 @@ class GestorePrenotazioni():
     collectionPrenotazioni=[]
     collectionPrenotazioni.append(prova)
 
-    def inserisciPrenotazione(data,):pass
+    def inserisciPrenotazione():
+        print("sto ins")
 
     def modificaPrenotazione(self):pass
 

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>prenotazioni</class>
+ <widget class="QWidget" name="prenotazioni">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>736</width>
+    <height>368</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QCalendarWidget" name="calendario">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>304</width>
+     <height>173</height>
+    </rect>
+   </property>
+   <property name="minimumDate">
+    <date>
+     <year>2022</year>
+     <month>7</month>
+     <day>4</day>
+    </date>
+   </property>
+   <property name="maximumDate">
+    <date>
+     <year>2050</year>
+     <month>12</month>
+     <day>31</day>
+    </date>
+   </property>
+   <property name="firstDayOfWeek">
+    <enum>Qt::Sunday</enum>
+   </property>
+   <property name="gridVisible">
+    <bool>true</bool>
+   </property>
+   <property name="verticalHeaderFormat">
+    <enum>QCalendarWidget::NoVerticalHeader</enum>
+   </property>
+   <property name="navigationBarVisible">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tabellaprenotazioni">
+   <property name="geometry">
+    <rect>
+     <x>335</x>
+     <y>10</y>
+     <width>291</width>
+     <height>331</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="rowCount">
+    <number>15</number>
+   </property>
+   <property name="columnCount">
+    <number>4</number>
+   </property>
+   <attribute name="horizontalHeaderDefaultSectionSize">
+    <number>64</number>
+   </attribute>
+   <attribute name="verticalHeaderDefaultSectionSize">
+    <number>20</number>
+   </attribute>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <column/>
+   <column/>
+   <column/>
+   <column/>
+  </widget>
+  <widget class="QPushButton" name="inserisciprenotazione">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>190</y>
+     <width>113</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Inserisci</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="eliminaprenotazione">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>260</y>
+     <width>113</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Elimina</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="modificaprenotazione">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>220</y>
+     <width>113</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Modifica</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

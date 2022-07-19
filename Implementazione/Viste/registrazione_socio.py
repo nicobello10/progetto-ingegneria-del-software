@@ -10,7 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Implementazione.Gestione.GestoreUtente import GestoreUtente
-
+from Implementazione.Viste.confermatesseramento import Ui_confermatesseramento
 
 class Ui_registrazionesocio(object):
 
@@ -18,15 +18,23 @@ class Ui_registrazionesocio(object):
         tipoTesseramento=""
         codiceFiscale=self.codicefiscale.text()
         email=self.email.text()
+
         if self.tennis.isChecked():
             tipoTesseramento="Tennis"
         elif self.paddle.isChecked():
             tipoTesseramento="Paddle"
         elif self.tennis_paddle.isChecked():
             tipoTesseramento="Tennis + Paddle"
+
         GestoreUtente.creaTesseramento(email,codiceFiscale,tipoTesseramento)
         self.invia.setEnabled(False)
 
+
+    def popup(self):
+        self.window_tesseramento = QtWidgets.QDialog()
+        self.ui_tesseramento = Ui_confermatesseramento()
+        self.ui_tesseramento.setupUi(self.window_tesseramento)
+        self.window_tesseramento.show()
 
     def setupUi(self, registrazionesocio):
         registrazionesocio.setObjectName("registrazionesocio")
@@ -78,7 +86,6 @@ class Ui_registrazionesocio(object):
             self.invia.setEnabled(False)
         else:
             self.invia.clicked.connect(self.tesseramento)
-
         self.retranslateUi(registrazionesocio)
         QtCore.QMetaObject.connectSlotsByName(registrazionesocio)
 

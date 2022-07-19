@@ -11,35 +11,35 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Dialog(object):
-    def setupUi(self, Dialog):
-        Dialog.setObjectName("Dialog")
-        Dialog.resize(400, 97)
+class Ui_confermatesseramento(object):
+    def setupUi(self, confermatesseramento):
+        confermatesseramento.setObjectName("confermatesseramento")
+        confermatesseramento.resize(400, 93)
         self.buttonBox = QtWidgets.QDialogButtonBox(Dialog)
-        self.buttonBox.setGeometry(QtCore.QRect(10, 50, 341, 32))
+        self.buttonBox.setGeometry(QtCore.QRect(20, 50, 341, 32))
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
-        self.label = QtWidgets.QLabel(Dialog)
-        self.label.setGeometry(QtCore.QRect(20, 20, 201, 16))
+        self.label = QtWidgets.QLabel(confermatesseramento)
+        self.label.setGeometry(QtCore.QRect(30, 20, 341, 20))
         self.label.setObjectName("label")
 
-        self.retranslateUi(Dialog)
-        self.buttonBox.accepted.connect(Dialog.accept) # type: ignore
-        self.buttonBox.rejected.connect(Dialog.reject) # type: ignore
-        QtCore.QMetaObject.connectSlotsByName(Dialog)
+        self.retranslateUi(confermatesseramento)
+        self.buttonBox.accepted.connect(confermatesseramento.accept) # type: ignore
+        self.buttonBox.rejected.connect(confermatesseramento.reject) # type: ignore
+        QtCore.QMetaObject.connectSlotsByName(confermatesseramento)
 
-    def retranslateUi(self, Dialog):
+    def retranslateUi(self, confermatesseramento):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.label.setText(_translate("Dialog", "tesseramento effettuato con successo"))
+        confermatesseramento.setWindowTitle(_translate("confermatesseramento", "Dialog"))
+        self.label.setText(_translate("confermatesseramento", "tesseramento effettuato con successo"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
+    confermatesseramento = QtWidgets.QDialog()
+    ui = Ui_confermatesseramento()
+    ui.setupUi(confermatesseramento)
+    confermatesseramento.show()
     sys.exit(app.exec_())

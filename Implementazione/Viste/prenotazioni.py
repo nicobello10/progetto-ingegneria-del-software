@@ -12,16 +12,35 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QTableWidgetItem
 
 from Implementazione.Gestione.GestorePrenotazioni import GestorePrenotazioni
+from Implementazione.Viste.conferma_prenotazione import Ui_conferma_prenotazione
+from Implementazione.Viste.errore_prenotazione import Ui_erroreprenotazione
 
 
 class Ui_prenotazioni(object):
 
     def inserisciPrenotazione(self):
+        data = str(self.calendario.selectedDate())\
+            .replace('PyQt5.QtCore.QDate','')\
+            .replace('(','')\
+            .replace(')','')
+        riga=self.tabellaprenotazioni.currentRow()
+        colonna=self.tabellaprenotazioni.currentColumn()
+        if(self.tabellaprenotazioni.currentItem()==None ):
+            self.window_conferma = QtWidgets.QDialog()
+            self.ui_conferma = Ui_conferma_prenotazione()
+            self.ui_conferma.setupUi(self.window_conferma)
+            if(self.window_conferma.exec()==1):
+                GestorePrenotazioni.inserisciPrenotazione(data,riga,colonna)
+            else:
+                pass
+            self.visualizzaPrenotazioni()
+        else:
+            self.window_conferma = QtWidgets.QDialog()
+            self.ui_conferma = Ui_erroreprenotazione()
+            self.ui_conferma.setupUi(self.window_conferma)
+            self.window_conferma.show()
 
-        print(self.tabellaprenotazioni.currentRow())
-        print(self.tabellaprenotazioni.currentColumn())
-        if(self.tabellaprenotazioni.currentItem()==None):
-            print("vuota")
+
 
 
 
@@ -30,8 +49,10 @@ class Ui_prenotazioni(object):
     def visualizzaPrenotazioni(self):
 
         self.tabellaprenotazioni.clearContents()
-        data = self.calendario.selectedDate()
-        print(data)
+        data = str(self.calendario.selectedDate())\
+            .replace('PyQt5.QtCore.QDate','')\
+            .replace('(','')\
+            .replace(')','')
         colonna=0
         for i in range(len(GestorePrenotazioni.collectionPrenotazioni)):
             if GestorePrenotazioni.collectionPrenotazioni[i].data == str(data):

@@ -15,7 +15,7 @@ class Ui_confermatesseramento(object):
     def setupUi(self, confermatesseramento):
         confermatesseramento.setObjectName("confermatesseramento")
         confermatesseramento.resize(400, 93)
-        self.buttonBox = QtWidgets.QDialogButtonBox(Dialog)
+        self.buttonBox = QtWidgets.QDialogButtonBox(confermatesseramento)
         self.buttonBox.setGeometry(QtCore.QRect(20, 50, 341, 32))
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)

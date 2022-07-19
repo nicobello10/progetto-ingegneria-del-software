@@ -28,7 +28,7 @@ class Ui_registrazionesocio(object):
 
         GestoreUtente.creaTesseramento(email,codiceFiscale,tipoTesseramento)
         self.invia.setEnabled(False)
-
+        self.popup()
 
     def popup(self):
         self.window_tesseramento = QtWidgets.QDialog()

@@ -32,7 +32,7 @@ class Ui_confermatesseramento(object):
     def retranslateUi(self, confermatesseramento):
         _translate = QtCore.QCoreApplication.translate
         confermatesseramento.setWindowTitle(_translate("confermatesseramento", "Dialog"))
-        self.label.setText(_translate("confermatesseramento", "tesseramento effettuato con successo"))
+        self.label.setText(_translate("confermatesseramento", "Tesseramento effettuato con successo"))
 
 
 if __name__ == "__main__":

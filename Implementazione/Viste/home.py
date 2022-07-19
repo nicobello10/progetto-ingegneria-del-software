@@ -13,6 +13,7 @@ from Implementazione.Viste.login import Login
 from Implementazione.Viste.registrazione_socio import Ui_registrazionesocio
 from Implementazione.Gestione.GestoreUtente import GestoreUtente
 from Implementazione.Viste.gestione_organizzazione import Ui_gestioneOrganizzazione
+from Implementazione.Viste.prenotazioni import Ui_prenotazioni
 
 class Ui_Form(object):
     def gestioneUtente(self):
@@ -35,6 +36,12 @@ class Ui_Form(object):
             self.ui.setupUi(self.window)
             self.window.show()
 
+    def gestionePrenotazioni(self):
+        if (GestoreUtente.loginEffettuato == True):
+            self.window = QtWidgets.QMainWindow()
+            self.ui = Ui_prenotazioni()
+            self.ui.setupUi(self.window)
+            self.window.show()
 
 
     def setupUi(self, Form):
@@ -60,6 +67,7 @@ class Ui_Form(object):
         self.gestioneutente.clicked.connect(self.gestioneUtente)
         self.gestionetesseramento.clicked.connect(self.gestioneTesseramento)
         self.gestioneorganizzazione.clicked.connect(self.gestioneOrganizzazione)
+        self.gestioneprenotazioni.clicked.connect(self.gestionePrenotazioni)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)

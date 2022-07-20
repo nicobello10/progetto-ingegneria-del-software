@@ -44,13 +44,10 @@ class Ui_registrazionesocio(object):
                 tipoTesseramento = "Tennis + Paddle"
             self.popup()
             GestoreUtente.creaTesseramento(email, codiceFiscale, tipoTesseramento)
-            print("fausta")
+
         else :
-            print("fai partire il popup di errore")
             self.popupET()
-            print("sono un pagliaccio")
-            self.invia.setEnabled(False)
-            print("sono un pagliaccio2")
+
 
 
 
@@ -67,7 +64,7 @@ class Ui_registrazionesocio(object):
         self.ui_etesseramento = Ui_erroretesseramento()
         self.ui_etesseramento.setupUi(self.window_etesseramento)
         self.window_etesseramento.show()
-        print("sono strano1")
+
 
     def setupUi(self, registrazionesocio):
         registrazionesocio.setObjectName("registrazionesocio")

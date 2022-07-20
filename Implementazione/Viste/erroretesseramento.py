@@ -13,7 +13,6 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_erroretesseramento(object):
     def setupUi(self, erroretesseramento):
-        print("sono strano2")
         erroretesseramento.setObjectName("erroretesseramento")
         erroretesseramento.resize(400, 93)
         self.buttonBox = QtWidgets.QDialogButtonBox(erroretesseramento)
@@ -31,7 +30,7 @@ class Ui_erroretesseramento(object):
         QtCore.QMetaObject.connectSlotsByName(erroretesseramento)
 
     def retranslateUi(self, erroretesseramento):
-        print("sono strano3")
+
         _translate = QtCore.QCoreApplication.translate
         erroretesseramento.setWindowTitle(_translate("erroretesseramento", "Dialog"))
         self.label.setText(_translate("erroretesseramento", "Hai sbagliato a mettere i campi"))
@@ -45,4 +44,3 @@ if __name__ == "__main__":
     ui.setupUi(erroretesseramento)
     erroretesseramento.show()
     sys.exit(app.exec_())
-    print("sono strano4")

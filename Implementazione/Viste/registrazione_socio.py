@@ -11,30 +11,63 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Implementazione.Gestione.GestoreUtente import GestoreUtente
 from Implementazione.Viste.confermatesseramento import Ui_confermatesseramento
+from Implementazione.Viste.erroretesseramento import Ui_erroretesseramento
 
 class Ui_registrazionesocio(object):
-
     def tesseramento(self):
-        tipoTesseramento=""
-        codiceFiscale=self.codicefiscale.text()
-        email=self.email.text()
+        cont = 0
+        tipoTesseramento = ""
 
-        if self.tennis.isChecked():
-            tipoTesseramento="Tennis"
-        elif self.paddle.isChecked():
-            tipoTesseramento="Paddle"
-        elif self.tennis_paddle.isChecked():
-            tipoTesseramento="Tennis + Paddle"
+        appoggioCF = self.codicefiscale.text()
+        appoggioEM = self.email.text()
 
-        GestoreUtente.creaTesseramento(email,codiceFiscale,tipoTesseramento)
-        self.invia.setEnabled(False)
-        self.popup()
+        for x in appoggioCF:
+            cont = cont + 1
+
+        flag1 = 0
+
+        flag2 = 0
+        for x in appoggioEM:
+            if(x=="@"):
+                flag1=1
+            if(x=="."):
+                flag2 = 1
+
+        if (cont>=16 and flag1 ==1 and flag2== 1 ):
+            codiceFiscale=self.codicefiscale.text()
+            email = self.email.text()
+            if self.tennis.isChecked():
+                tipoTesseramento = "Tennis"
+            elif self.paddle.isChecked():
+                tipoTesseramento = "Paddle"
+            elif self.tennis_paddle.isChecked():
+                tipoTesseramento = "Tennis + Paddle"
+            self.popup()
+            GestoreUtente.creaTesseramento(email, codiceFiscale, tipoTesseramento)
+            print("fausta")
+        else :
+            print("fai partire il popup di errore")
+            self.popupET()
+            print("sono un pagliaccio")
+            self.invia.setEnabled(False)
+            print("sono un pagliaccio2")
+
+
+
 
     def popup(self):
         self.window_tesseramento = QtWidgets.QDialog()
         self.ui_tesseramento = Ui_confermatesseramento()
         self.ui_tesseramento.setupUi(self.window_tesseramento)
         self.window_tesseramento.show()
+
+
+    def popupET(self):
+        self.window_etesseramento = QtWidgets.QDialog()
+        self.ui_etesseramento = Ui_erroretesseramento()
+        self.ui_etesseramento.setupUi(self.window_etesseramento)
+        self.window_etesseramento.show()
+        print("sono strano1")
 
     def setupUi(self, registrazionesocio):
         registrazionesocio.setObjectName("registrazionesocio")
@@ -86,6 +119,7 @@ class Ui_registrazionesocio(object):
             self.invia.setEnabled(False)
         else:
             self.invia.clicked.connect(self.tesseramento)
+
         self.retranslateUi(registrazionesocio)
         QtCore.QMetaObject.connectSlotsByName(registrazionesocio)
 

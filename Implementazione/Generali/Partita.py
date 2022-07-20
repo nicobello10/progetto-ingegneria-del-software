@@ -7,9 +7,6 @@ class Partita():
         self.PunteggioGiocatoreUno=PunteggioGiocatoreUno
         self.vincitore=vincitore
 
-    def aggiungiPartita():
-
-
     def getPerdente(self):
         return  self.perdente
 
@@ -22,8 +19,8 @@ class Partita():
     def setPunteggioGiocatoreDue(self):
         self.punteggioGiocatoreDue=punteggioGiocatoreDue
 
-    deg getPunteggioGiocatoreUno(self):
-        Return self.punteggioGiocatoreUno
+    def getPunteggioGiocatoreUno(self):
+        return self.punteggioGiocatoreUno
 
     def setPunteggioGiocatoreUno(self):
         self.punteggioGiocatoreUno=punteggioGiocatoreUno

@@ -1,13 +1,11 @@
 from Implementazione.Generali.Utente import Utente
 
 class Torneo():
-    def __init__(self, datafine,dataInizio,iscritti, partita):
-        self.dataFine=Datafine
+    def __init__(self, datafine,dataInizio,iscritti, partite):
+        self.dataFine=datafine
         self.dataInizio=dataInizio
         self.iscritti=iscritti
         self.partite=partite
-
-    def aggiungiTorneo(datafine,datainizio,iscritti):
 
     def getDataInizio(self):
         return self.datainizio
@@ -19,15 +17,15 @@ class Torneo():
         return self.partite
 
     def setDataFine(self):
-       self.dataFine= dataFine
+       self.dataFine= datafine
 
     def setDataInizio(self):
-        self.dataInizio= dataInizio
+        self.datainizio= datainizio
 
 #da ragionare  lista
     def setIscritti(self):
         self.iscritti = iscritti
 
-    def setPartite(self):
-        self.partite= partite
+    def setPartita(self):
+        self.partita= partita
 

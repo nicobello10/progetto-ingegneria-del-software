@@ -16,14 +16,9 @@ class Ui_registrazionesocio(object):
     def tesseramento(self):
         cont = 0
         tipoTesseramento = ""
-
         appoggioCF = self.codicefiscale.text()
         appoggioEM = self.email.text()
-
-
-
         flag1 = 0
-
         flag2 = 0
         for x in appoggioEM:
             if(x=="@"):
@@ -42,7 +37,6 @@ class Ui_registrazionesocio(object):
                 tipoTesseramento = "Tennis + Paddle"
             self.popup()
             GestoreUtenti.creaTesseramento(email, codiceFiscale, tipoTesseramento)
-
         else :
             self.popupET()
 
@@ -110,7 +104,9 @@ class Ui_registrazionesocio(object):
         self.invia.raise_()
 
         #azioni dei pulsanti
-        if (GestoreUtenti.utenteConnesso.getTesseramento() ==True or GestoreUtenti.admin.isAdmin == True or GestoreUtenti.admin.isCustode== True):
+        if (GestoreUtenti.utenteConnesso.getTesseramento() ==True
+                or GestoreUtenti.utenteConnesso.isAdmin == True
+                or GestoreUtenti.utenteConnesso.isCustode== True):
             self.invia.setEnabled(False)
         else:
             self.invia.clicked.connect(self.tesseramento)

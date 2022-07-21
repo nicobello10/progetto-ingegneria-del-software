@@ -96,6 +96,7 @@ class Ui_gestionepartite(object):
         self.statistiche = QtWidgets.QLineEdit(gestionepartite)
         self.statistiche.setGeometry(QtCore.QRect(250, 150, 113, 21))
         self.statistiche.setObjectName("statistiche")
+        self.statistiche.setReadOnly(True)
         self.labelquattro = QtWidgets.QLabel(gestionepartite)
         self.labelquattro.setGeometry(QtCore.QRect(250, 130, 111, 16))
         self.labelquattro.setObjectName("labelquattro")

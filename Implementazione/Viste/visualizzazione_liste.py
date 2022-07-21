@@ -12,13 +12,15 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QTableWidgetItem
 from PyQt5.QtCore import QEvent,Qt
 
+
 from Implementazione.Gestione.GestoreUtenti import GestoreUtenti
 
 
 
 class Ui_visualizzazioneliste(object):
 
-
+    def getUtenteSelezionato(self):
+        return self.tabellautenti.currentRow()
 
 
     def selezione(self):
@@ -44,8 +46,12 @@ class Ui_visualizzazioneliste(object):
         self.tabellautenti.setSelectionBehavior(QtWidgets.QTableView.SelectRows)
         self.tabellautenti.setHorizontalHeaderLabels(["Nome","Cognome","Data di nascita","Cellulare","Username","Password","Socio"])
         self.retranslateUi(visualizzazioneliste)
-        self.buttonBox.accepted.connect(visualizzazioneliste.accept) # type: ignore
+         # type: ignore
+        
+        self.buttonBox.accepted.connect(visualizzazioneliste.accept)
         self.buttonBox.rejected.connect(visualizzazioneliste.reject) # type: ignore
+
+        #prova segnali
         QtCore.QMetaObject.connectSlotsByName(visualizzazioneliste)
         # griglia non modificabile
         self.tabellautenti.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)

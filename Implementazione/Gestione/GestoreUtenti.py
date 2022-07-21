@@ -28,6 +28,7 @@ class GestoreUtenti():
         for index, item in enumerate(GestoreUtenti.collectionUtenti):
             if(item == utente):
                 GestoreUtenti.collectionUtenti[index]=utentemodificato
+                if(GestoreUtenti.utenteConnesso.isAdmin==False): GestoreUtenti.utenteConnesso=utentemodificato
                 #print (f"{item} {utentemodificato}")
 
 

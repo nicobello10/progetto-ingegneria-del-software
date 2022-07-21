@@ -31,8 +31,10 @@ class Ui_prenotazioni(object):
             self.visualizzasoci = False
             self.windows_visualizza = QtWidgets.QDialog()
             self.ui_visualizza = Ui_visualizzazioneliste()
-            self.ui_visualizza.setupUi(self.windows_visualizza, self.visualizzasoci)
+            self.ui_visualizza.setupUi(self.windows_visualizza, False)
             self.windows_visualizza.show()
+            if (self.windows_visualizza.exec() == 1):
+                print(self.ui_visualizza.getUtenteSelezionato())
             self.visualizzaPrenotazioni()
         elif (self.tabellaprenotazioni.currentItem() == None):
             self.window_conferma = QtWidgets.QDialog()

@@ -55,7 +55,9 @@ class UI_Iscrizione(object):
         self.ui_conferma.setupUi(self.window_conferma)
         self.window_conferma.show()
 
-    def modificaUtente(self,idUtente):
+    def modificaUtenteAdmin(self):
+        idUtente=UI_Iscrizione.idUtente
+        print(idUtente)
         campoNome = self.nome.text()
         campoCognome = self.cognome.text()
         campoNomeUtente = self.nomeUtente.text()
@@ -63,7 +65,7 @@ class UI_Iscrizione(object):
         campoCellulare = self.cellulare.text()
         campoDataNascita = self.dataNascita.text()
         utenteModificato=Utente(campoNome,campoCognome,campoDataNascita,campoCellulare,campoPassword,campoNomeUtente)
-        GestoreUtenti.modificaUtente(GestoreUtenti.collectionUtenti[idUtente+2],utenteModificato)
+        GestoreUtenti.modificaUtente(GestoreUtenti.collectionUtenti[idUtente],utenteModificato)
         self.window_conferma = QtWidgets.QDialog()
         self.ui_conferma = Ui_ConfermaIscrizione()
         self.ui_conferma.setupUi(self.window_conferma)
@@ -74,6 +76,7 @@ class UI_Iscrizione(object):
 
 
     def setupUi(self, Iscrizione,idUtente):
+        UI_Iscrizione.idUtente=idUtente
         Iscrizione.setObjectName("Iscrizione")
         Iscrizione.resize(400, 300)
         self.label_3 = QtWidgets.QLabel(Iscrizione)
@@ -132,7 +135,7 @@ class UI_Iscrizione(object):
             self.password.setText(GestoreUtenti.collectionUtenti[idUtente].password)
             self.nomeUtente.setText(GestoreUtenti.collectionUtenti[idUtente].nomeUtente)
             self.cellulare.setText(GestoreUtenti.collectionUtenti[idUtente].cellulare)
-            self.invia.clicked.connect(self.modificaUtente)
+            self.invia.clicked.connect(self.modificaUtenteAdmin)
         else:
             self.invia.clicked.connect(self.creaUtente)
 

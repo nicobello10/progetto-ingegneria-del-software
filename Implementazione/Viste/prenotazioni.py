@@ -22,17 +22,23 @@ from Implementazione.Viste.gestionepartite import Ui_gestionepartite
 class Ui_prenotazioni(object):
 
     def gestionePartite(self):
-        data = str(self.calendario.selectedDate()) \
+        if (self.tabellaprenotazioni.currentItem()==None):
+            self.window_conferma = QtWidgets.QDialog()
+            self.ui_conferma = Ui_conferma_prenotazione()
+            self.ui_conferma.setupUi(self.window_conferma,"Nessuna prenotazione trovata")
+            self.window_conferma.show()
+        else:
+            data = str(self.calendario.selectedDate()) \
             .replace('PyQt5.QtCore.QDate', '') \
             .replace('(', '') \
             .replace(')', '')
-        riga = self.tabellaprenotazioni.currentRow()
-        colonna = self.tabellaprenotazioni.currentColumn()
-        self.window = QtWidgets.QMainWindow()
-        prenotazione=GestorePrenotazioni.cercaPrenotazione(data,riga,colonna)
-        self.ui = Ui_gestionepartite()
-        self.ui.setupUi(self.window,prenotazione)
-        self.window.show()
+            riga = self.tabellaprenotazioni.currentRow()
+            colonna = self.tabellaprenotazioni.currentColumn()
+            self.window = QtWidgets.QMainWindow()
+            prenotazione=GestorePrenotazioni.cercaPrenotazione(data,riga,colonna)
+            self.ui = Ui_gestionepartite()
+            self.ui.setupUi(self.window,prenotazione)
+            self.window.show()
 
     def eliminaPrenotazione(self):
         data = str(self.calendario.selectedDate()) \

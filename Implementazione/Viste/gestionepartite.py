@@ -21,11 +21,11 @@ class Ui_gestionepartite(object):
 
     def modificaPartita(self):
         self.tabellapartite.currentRow()
-        self.window = QtWidgets.QMainWindow()
+        self.window = QtWidgets.QDialog()
         self.ui = Ui_modificapartita()
         self.ui.setupUi(self.window,self.tabellapartite.currentRow())
         self.window.show()
-        if(self.ui.modificaPartita()):self.window.hide()
+        if(self.window.exec()):self.visualizzaPartite()
 
 
     def aggiungiPartita(self):

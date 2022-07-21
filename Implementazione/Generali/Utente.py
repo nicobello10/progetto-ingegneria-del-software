@@ -2,7 +2,7 @@ from Implementazione.Generali.Tesseramento import Tesseramento
 
 
 class Utente():
-    contatore=0
+    contatore=2
     def __init__(self, nome, cognome, dataNascita, cellulare, password,nomeUtente):
         self.nomeUtente = nomeUtente
         self.password = password

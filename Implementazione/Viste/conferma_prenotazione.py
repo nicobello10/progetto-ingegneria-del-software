@@ -12,7 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_conferma_prenotazione(object):
-    def setupUi(self, conferma_prenotazione):
+    def setupUi(self, conferma_prenotazione,messaggio):
         conferma_prenotazione.setObjectName("conferma_prenotazione")
         conferma_prenotazione.resize(400, 107)
         self.buttonBox = QtWidgets.QDialogButtonBox(conferma_prenotazione)
@@ -24,15 +24,15 @@ class Ui_conferma_prenotazione(object):
         self.label.setGeometry(QtCore.QRect(50, 30, 231, 41))
         self.label.setObjectName("label")
 
-        self.retranslateUi(conferma_prenotazione)
+        self.retranslateUi(conferma_prenotazione,messaggio)
         self.buttonBox.accepted.connect(conferma_prenotazione.accept) # type: ignore
         self.buttonBox.rejected.connect(conferma_prenotazione.reject) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(conferma_prenotazione)
 
-    def retranslateUi(self, conferma_prenotazione):
+    def retranslateUi(self, conferma_prenotazione,messaggio):
         _translate = QtCore.QCoreApplication.translate
         conferma_prenotazione.setWindowTitle(_translate("conferma_prenotazione", "Dialog"))
-        self.label.setText(_translate("conferma_prenotazione", "<html><head/><body><p>Confermi la prenotazione per la data </p><p>e l\'orario selezionati?</p></body></html>"))
+        self.label.setText(_translate("conferma_prenotazione", messaggio))
 
 
 if __name__ == "__main__":

@@ -20,6 +20,31 @@ from Implementazione.Viste.visualizzazione_liste import Ui_visualizzazioneliste
 
 class Ui_prenotazioni(object):
 
+    def eliminaPrenotazione(self):
+        data = str(self.calendario.selectedDate()) \
+            .replace('PyQt5.QtCore.QDate', '') \
+            .replace('(', '') \
+            .replace(')', '')
+        riga = self.tabellaprenotazioni.currentRow()
+        colonna = self.tabellaprenotazioni.currentColumn()
+        # prenotazione se si è loggati come admin
+        # prenotazione da utente
+        if (self.tabellaprenotazioni.currentItem().text()==GestoreUtenti.utenteConnesso.nome):
+            self.window_conferma = QtWidgets.QDialog()
+            self.ui_conferma = Ui_conferma_prenotazione()
+            self.ui_conferma.setupUi(self.window_conferma,"Vuoi eliminare la prenotazione?")
+            if (self.window_conferma.exec() == 1):
+                print(GestoreUtenti.utenteConnesso.ID)
+                GestorePrenotazioni.eliminaPrenotazione(data, riga, colonna)
+            else:
+                pass
+            self.visualizzaPrenotazioni()
+        else:
+            self.window_conferma = QtWidgets.QDialog()
+            self.ui_conferma = Ui_erroreprenotazione()
+            self.ui_conferma.setupUi(self.window_conferma)
+            self.window_conferma.show()
+
     def inserisciPrenotazione(self):
         data = str(self.calendario.selectedDate())\
             .replace('PyQt5.QtCore.QDate','')\
@@ -27,19 +52,21 @@ class Ui_prenotazioni(object):
             .replace(')','')
         riga=self.tabellaprenotazioni.currentRow()
         colonna=self.tabellaprenotazioni.currentColumn()
+        #prenotazione se si è loggati come admin
         if(self.tabellaprenotazioni.currentItem()==None and GestoreUtenti.utenteConnesso.isAdmin==True):
             self.windows_visualizza = QtWidgets.QDialog()
             self.ui_visualizza = Ui_visualizzazioneliste()
             self.ui_visualizza.setupUi(self.windows_visualizza, False)
             self.windows_visualizza.show()
             if (self.windows_visualizza.exec() == 1):
-                print(self.ui_visualizza.getUtenteSelezionato())
-                GestorePrenotazioni.inserisciPrenotazione(data, riga, colonna, self.ui_visualizza.getUtenteSelezionato())
+                GestorePrenotazioni.inserisciPrenotazione(data, riga, colonna, self.ui_visualizza.getRigaSelezionata())
+                #refresha la tabella per vedere la prenotazione aggiunta
             self.visualizzaPrenotazioni()
+        #prenotazione da utente
         elif (self.tabellaprenotazioni.currentItem() == None):
             self.window_conferma = QtWidgets.QDialog()
             self.ui_conferma = Ui_conferma_prenotazione()
-            self.ui_conferma.setupUi(self.window_conferma)
+            self.ui_conferma.setupUi(self.window_conferma,"Confermi la prenotazione?")
             if (self.window_conferma.exec() == 1):
                 GestorePrenotazioni.inserisciPrenotazione(data, riga, colonna,0)
             else:
@@ -51,19 +78,15 @@ class Ui_prenotazioni(object):
             self.ui_conferma.setupUi(self.window_conferma)
             self.window_conferma.show()
 
-
-
-
-
-
-
     def visualizzaPrenotazioni(self):
 
         self.tabellaprenotazioni.clearContents()
+        #siccome la data ritornata dal calendario è una stringa strana, la pulisco
         data = str(self.calendario.selectedDate())\
             .replace('PyQt5.QtCore.QDate','')\
             .replace('(','')\
             .replace(')','')
+        #inizializzo la variabile
         colonna=0
         for i in range(len(GestorePrenotazioni.collectionPrenotazioni)):
             if GestorePrenotazioni.collectionPrenotazioni[i].data == str(data):
@@ -75,61 +98,18 @@ class Ui_prenotazioni(object):
                     colonna=2
                 if GestorePrenotazioni.collectionPrenotazioni[i].campo.tipoCampo=="Paddle":
                     colonna=3
+                    # ciclo per scrivere velocemente oraInizio, per risparmiare un blocco di if
                 for j in range (8,23):
                     if j<10: oraInizio="0"+str(j)+":00"
                     else: oraInizio=str(j)+":00"
                     if GestorePrenotazioni.collectionPrenotazioni[i].oraInizio == oraInizio:
                         item = QTableWidgetItem(GestorePrenotazioni.collectionPrenotazioni[i].utente.nome)
                         self.tabellaprenotazioni.setItem(j-8, colonna, item)
-                '''elif GestorePrenotazioni.collectionPrenotazioni[i].oraInizio == "09:00":
-                    item = QTableWidgetItem(GestorePrenotazioni.collectionPrenotazioni[i].utente.nome)
-                    self.tabellaprenotazioni.setItem(1, colonna, item)
-                elif GestorePrenotazioni.collectionPrenotazioni[i].oraInizio == "10:00":
-                    item = QTableWidgetItem(GestorePrenotazioni.collectionPrenotazioni[i].utente.nome)
-                    self.tabellaprenotazioni.setItem(2, colonna, item)
-                elif GestorePrenotazioni.collectionPrenotazioni[i].oraInizio == "11:00":
-                    item = QTableWidgetItem(GestorePrenotazioni.collectionPrenotazioni[i].utente.nome)
-                    self.tabellaprenotazioni.setItem(3, colonna, item)
-                elif GestorePrenotazioni.collectionPrenotazioni[i].oraInizio == "12:00":
-                    item = QTableWidgetItem(GestorePrenotazioni.collectionPrenotazioni[i].utente.nome)
-                    self.tabellaprenotazioni.setItem(4, colonna, item)
-                elif GestorePrenotazioni.collectionPrenotazioni[i].oraInizio == "13:00":
-                    item = QTableWidgetItem(GestorePrenotazioni.collectionPrenotazioni[i].utente.nome)
-                    self.tabellaprenotazioni.setItem(5, colonna, item)
-                elif GestorePrenotazioni.collectionPrenotazioni[i].oraInizio == "14:00":
-                    item = QTableWidgetItem(GestorePrenotazioni.collectionPrenotazioni[i].utente.nome)
-                    self.tabellaprenotazioni.setItem(6, colonna, item)
-                elif GestorePrenotazioni.collectionPrenotazioni[i].oraInizio == "15:00":
-                    item = QTableWidgetItem(GestorePrenotazioni.collectionPrenotazioni[i].utente.nome)
-                    self.tabellaprenotazioni.setItem(7, colonna, item)
-                elif GestorePrenotazioni.collectionPrenotazioni[i].oraInizio == "16:00":
-                    item = QTableWidgetItem(GestorePrenotazioni.collectionPrenotazioni[i].utente.nome)
-                    self.tabellaprenotazioni.setItem(8, colonna, item)
-                elif GestorePrenotazioni.collectionPrenotazioni[i].oraInizio == "17:00":
-                    item = QTableWidgetItem(GestorePrenotazioni.collectionPrenotazioni[i].utente.nome)
-                    self.tabellaprenotazioni.setItem(9, colonna, item)
-                elif GestorePrenotazioni.collectionPrenotazioni[i].oraInizio == "18:00":
-                    item = QTableWidgetItem(GestorePrenotazioni.collectionPrenotazioni[i].utente.nome)
-                    self.tabellaprenotazioni.setItem(10, colonna, item)
-                elif GestorePrenotazioni.collectionPrenotazioni[i].oraInizio == "19:00":
-                    item = QTableWidgetItem(GestorePrenotazioni.collectionPrenotazioni[i].utente.nome)
-                    self.tabellaprenotazioni.setItem(11, colonna, item)
-                elif GestorePrenotazioni.collectionPrenotazioni[i].oraInizio == "20:00":
-                    item = QTableWidgetItem(GestorePrenotazioni.collectionPrenotazioni[i].utente.nome)
-                    self.tabellaprenotazioni.setItem(12, colonna, item)
-                elif GestorePrenotazioni.collectionPrenotazioni[i].oraInizio == "21:00":
-                    item = QTableWidgetItem(GestorePrenotazioni.collectionPrenotazioni[i].utente.nome)
-                    self.tabellaprenotazioni.setItem(13, colonna, item)
-                elif GestorePrenotazioni.collectionPrenotazioni[i].oraInizio == "22:00":
-                    item = QTableWidgetItem(GestorePrenotazioni.collectionPrenotazioni[i].utente.nome)
-                    self.tabellaprenotazioni.setItem(14, colonna, item)'''
-
-
-
 
     def setupUi(self, prenotazioni):
         prenotazioni.setObjectName("prenotazioni")
         prenotazioni.resize(906, 368)
+        #lista di orari che andranno scritti sulle colonne della tabella
         self.orari=["8-9","9-10","10-11","11-12","12-13","13-14",
                     "14-15","15-16","16-17","17-18","18-19","19-20",
                     "20-21","21-22","22-23"]
@@ -158,21 +138,32 @@ class Ui_prenotazioni(object):
         self.eliminaprenotazione = QtWidgets.QPushButton(prenotazioni)
         self.eliminaprenotazione.setGeometry(QtCore.QRect(210, 260, 113, 32))
         self.eliminaprenotazione.setObjectName("eliminaprenotazione")
-        self.modificaprenotazione = QtWidgets.QPushButton(prenotazioni)
+        '''self.modificaprenotazione = QtWidgets.QPushButton(prenotazioni)
         self.modificaprenotazione.setGeometry(QtCore.QRect(210, 220, 113, 32))
-        self.modificaprenotazione.setObjectName("modificaprenotazione")
-        self.visualizzaPrenotazioni()
-        self.calendario.clicked.connect(self.visualizzaPrenotazioni)
-        self.inserisciprenotazione.clicked.connect(self.inserisciPrenotazione)
+        self.modificaprenotazione.setObjectName("modificaprenotazione")'''
+
+
         self.retranslateUi(prenotazioni)
         QtCore.QMetaObject.connectSlotsByName(prenotazioni)
+
+        #refresha la tabella appena si clicka su una data
+        self.visualizzaPrenotazioni()
+        #azione quando si clicka una data
+        self.calendario.clicked.connect(self.visualizzaPrenotazioni)
+        #azione quando si clicka insierisci prenotazione
+        self.inserisciprenotazione.clicked.connect(self.inserisciPrenotazione)
+        #azione quando si clicka modifica prenotazione
+        #self.modificaprenotazione.clicked.connect(self.inserisciPrenotazione)
+
+        #elimina prenotazione
+        self.eliminaprenotazione.clicked.connect(self.eliminaPrenotazione)
 
     def retranslateUi(self, prenotazioni):
         _translate = QtCore.QCoreApplication.translate
         prenotazioni.setWindowTitle(_translate("prenotazioni", "Form"))
         self.inserisciprenotazione.setText(_translate("prenotazioni", "Inserisci"))
         self.eliminaprenotazione.setText(_translate("prenotazioni", "Elimina"))
-        self.modificaprenotazione.setText(_translate("prenotazioni", "Modifica"))
+        #self.modificaprenotazione.setText(_translate("prenotazioni", "Modifica"))
 
 
 if __name__ == "__main__":

@@ -19,7 +19,8 @@ from Implementazione.Gestione.GestoreUtenti import GestoreUtenti
 
 class Ui_visualizzazioneliste(object):
 
-    def getUtenteSelezionato(self):
+    #ritorna la riga selezionata nella tabella
+    def getRigaSelezionata(self):
         return self.tabellautenti.currentRow()
 
 
@@ -29,7 +30,7 @@ class Ui_visualizzazioneliste(object):
         self.ui_iscrizione = UI_Iscrizione()
         self.ui_iscrizione.setupUi(self.window_iscrizione,self.tabellautenti.currentRow())
         self.window_iscrizione.show()
-        self.tabellautenti.currentRow()
+
 
     def setupUi(self, visualizzazioneliste, visualizzasoci):
         visualizzazioneliste.setObjectName("visualizzazioneliste")
@@ -46,12 +47,12 @@ class Ui_visualizzazioneliste(object):
         self.tabellautenti.setSelectionBehavior(QtWidgets.QTableView.SelectRows)
         self.tabellautenti.setHorizontalHeaderLabels(["Nome","Cognome","Data di nascita","Cellulare","Username","Password","Socio"])
         self.retranslateUi(visualizzazioneliste)
-         # type: ignore
+
         
         self.buttonBox.accepted.connect(visualizzazioneliste.accept)
-        self.buttonBox.rejected.connect(visualizzazioneliste.reject) # type: ignore
+        self.buttonBox.rejected.connect(visualizzazioneliste.reject)
 
-        #prova segnali
+
         QtCore.QMetaObject.connectSlotsByName(visualizzazioneliste)
         # griglia non modificabile
         self.tabellautenti.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)

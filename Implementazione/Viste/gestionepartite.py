@@ -39,6 +39,7 @@ class Ui_gestionepartite(object):
             self.tabellapartite.setItem(i, 2, item)
             item = QTableWidgetItem(str(Ui_gestionepartite.prenotazione.collectionPartite[i].punteggiodue))
             self.tabellapartite.setItem(i, 3, item)
+        self.statistiche.setText(Ui_gestionepartite.prenotazione.getStatistiche())
 
     def setupUi(self, gestionepartite,prenotazione):
         Ui_gestionepartite.prenotazione=prenotazione

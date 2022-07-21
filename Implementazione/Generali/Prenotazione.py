@@ -12,3 +12,11 @@ class Prenotazione():
     def aggiungiPartita(self,partita):
         self.collectionPartite.append(partita)
         print(self.collectionPartite)
+
+    def getStatistiche(self):
+        vittorie=0
+        for partita in self.collectionPartite:
+            if(partita.punteggiouno>partita.punteggiodue): vittorie+=1
+        if(vittorie==0):percentuale=0
+        else:percentuale=vittorie/len(self.collectionPartite)*100
+        return "{:.2f}".format(percentuale)+" %"

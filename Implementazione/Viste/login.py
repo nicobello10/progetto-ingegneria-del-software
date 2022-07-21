@@ -27,7 +27,10 @@ class Login(object):
                 self.loginPopup()
                 self.logIn.setEnabled(False)
                 self.logOut.setEnabled(True)
-
+                if x.nomeUtente== "admin" and x.password=="admin":
+                    self.modifica.setEnabled(False)
+                else:
+                    self.modifica.setEnabled(True)
 
     def loginPopup(self):
         self.window_conferma = QtWidgets.QDialog()
@@ -92,6 +95,7 @@ class Login(object):
             self.logOut.setEnabled(True)
             self.logIn.setEnabled(False)
             self.nomeUtente.setText(GestoreUtenti.utenteConnesso.nomeUtente)
+
         else:
             self.logOut.setEnabled(False)
             self.logIn.setEnabled(True)

@@ -117,7 +117,7 @@ class Ui_gestionepartite(object):
         gestionepartite.setWindowTitle(_translate("gestionepartite", "Form"))
         self.labeluno.setText(_translate("gestionepartite", "Giocatore1"))
         self.labeldue.setText(_translate("gestionepartite", "Giocatore2"))
-        self.labeltre.setText(_translate("gestionepartite", "Partite di:"))
+        self.labeltre.setText(_translate("gestionepartite", "Partite di: "+Ui_gestionepartite.prenotazione.utente.nome))
         self.labelquattro.setText(_translate("gestionepartite", "Tendenza vittorie"))
         self.aggiungipartita.setText(_translate("gestionepartite", "Aggiungi"))
 

@@ -9,6 +9,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+
+from Implementazione.Viste.conferma_prenotazione import Ui_conferma
 from Implementazione.Viste.registrazione_utente import UI_Iscrizione
 from Implementazione.Gestione.GestoreUtenti import GestoreUtenti
 from Implementazione.Generali.Utente import Utente
@@ -27,11 +29,16 @@ class Login(object):
                 self.logIn.setEnabled(False)
                 self.logOut.setEnabled(True)
                 self.iscriviti.setEnabled(False)
-                if x.nomeUtente== "admin" and x.password=="admin":
+                if x==GestoreUtenti.admin:
                     self.modifica.setEnabled(False)
                     self.iscriviti.setEnabled(True)
                 else:
                     self.modifica.setEnabled(True)
+        if(GestoreUtenti.utenteConnesso==None):
+            self.window_conferma = QtWidgets.QDialog()
+            self.ui_conferma = Ui_conferma()
+            self.ui_conferma.setupUi(self.window_conferma, "Login errato")
+            self.window_conferma.show()
 
     def loginPopup(self):
         self.window_conferma = QtWidgets.QDialog()

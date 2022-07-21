@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_conferma_prenotazione(object):
+class Ui_conferma(object):
     def setupUi(self, conferma_prenotazione,messaggio):
         conferma_prenotazione.setObjectName("conferma_prenotazione")
         conferma_prenotazione.resize(400, 107)
@@ -39,7 +39,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     conferma_prenotazione = QtWidgets.QDialog()
-    ui = Ui_conferma_prenotazione()
+    ui = Ui_conferma()
     ui.setupUi(conferma_prenotazione)
     conferma_prenotazione.show()
     sys.exit(app.exec_())

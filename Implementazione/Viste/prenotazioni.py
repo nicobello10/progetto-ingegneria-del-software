@@ -13,7 +13,7 @@ from PyQt5.QtWidgets import QTableWidgetItem
 
 from Implementazione.Gestione.GestoreUtenti import GestoreUtenti
 from Implementazione.Gestione.GestorePrenotazioni import GestorePrenotazioni
-from Implementazione.Viste.conferma_prenotazione import Ui_conferma_prenotazione
+from Implementazione.Viste.conferma_prenotazione import Ui_conferma
 from Implementazione.Viste.errore_prenotazione import Ui_erroreprenotazione
 from Implementazione.Viste.visualizzazione_liste import Ui_visualizzazioneliste
 from Implementazione.Viste.gestionepartite import Ui_gestionepartite
@@ -24,7 +24,7 @@ class Ui_prenotazioni(object):
     def gestionePartite(self):
         if (self.tabellaprenotazioni.currentItem()==None):
             self.window_conferma = QtWidgets.QDialog()
-            self.ui_conferma = Ui_conferma_prenotazione()
+            self.ui_conferma = Ui_conferma()
             self.ui_conferma.setupUi(self.window_conferma,"Nessuna prenotazione trovata")
             self.window_conferma.show()
         else:
@@ -52,7 +52,7 @@ class Ui_prenotazioni(object):
         if (self.tabellaprenotazioni.currentItem().text()==GestoreUtenti.utenteConnesso.nome
         or GestoreUtenti.utenteConnesso.isAdmin==True):
             self.window_conferma = QtWidgets.QDialog()
-            self.ui_conferma = Ui_conferma_prenotazione()
+            self.ui_conferma = Ui_conferma()
             self.ui_conferma.setupUi(self.window_conferma,"Vuoi eliminare la prenotazione?")
             if (self.window_conferma.exec() == 1):
                 GestorePrenotazioni.eliminaPrenotazione(data, riga, colonna)
@@ -85,7 +85,7 @@ class Ui_prenotazioni(object):
         #prenotazione da utente
         elif (self.tabellaprenotazioni.currentItem() == None):
             self.window_conferma = QtWidgets.QDialog()
-            self.ui_conferma = Ui_conferma_prenotazione()
+            self.ui_conferma = Ui_conferma()
             self.ui_conferma.setupUi(self.window_conferma,"Confermi la prenotazione?")
             if (self.window_conferma.exec() == 1):
                 GestorePrenotazioni.inserisciPrenotazione(data, riga, colonna,0)
@@ -152,6 +152,7 @@ class Ui_prenotazioni(object):
         self.tabellaprenotazioni.verticalHeader().setDefaultSectionSize(20)
         self.tabellaprenotazioni.setHorizontalHeaderLabels(["Terra Rossa Coperto", "Terra Rossa", "Erba Sintetica", "Paddle"])
         self.tabellaprenotazioni.setVerticalHeaderLabels(self.orari)
+        self.tabellaprenotazioni.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.inserisciprenotazione = QtWidgets.QPushButton(prenotazioni)
         self.inserisciprenotazione.setGeometry(QtCore.QRect(210, 190, 113, 32))
         self.inserisciprenotazione.setObjectName("inserisciprenotazione")

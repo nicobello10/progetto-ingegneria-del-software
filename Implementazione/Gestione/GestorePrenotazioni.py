@@ -25,7 +25,7 @@ class GestorePrenotazioni():
     collectionPrenotazioni = []
     collectionPrenotazioni.append(prova)
 
-    def inserisciPrenotazione(data, riga, colonna):
+    def inserisciPrenotazione(data, riga, colonna,idUtente):
         if (riga == 0): orario = "08:00"
         if (riga == 1): orario = "09:00"
         if (riga == 2): orario = "10:00"
@@ -45,7 +45,8 @@ class GestorePrenotazioni():
         if (colonna == 1): campo = GestorePrenotazioni.terraRossa_2
         if (colonna == 2): campo = GestorePrenotazioni.erbaSintetica
         if (colonna == 3): campo = GestorePrenotazioni.paddle
-        prenotazione = Prenotazione(data, orario, campo, GestoreUtenti.utenteConnesso)
+        if(GestoreUtenti.utenteConnesso.isAdmin==False): prenotazione = Prenotazione(data, orario, campo, GestoreUtenti.utenteConnesso)
+        else: prenotazione = Prenotazione(data, orario, campo, GestoreUtenti.collectionUtenti[idUtente])
         GestorePrenotazioni.collectionPrenotazioni.append(prenotazione)
 
     def modificaPrenotazione(self):

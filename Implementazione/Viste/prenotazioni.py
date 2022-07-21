@@ -28,20 +28,20 @@ class Ui_prenotazioni(object):
         riga=self.tabellaprenotazioni.currentRow()
         colonna=self.tabellaprenotazioni.currentColumn()
         if(self.tabellaprenotazioni.currentItem()==None and GestoreUtenti.utenteConnesso.isAdmin==True):
-            self.visualizzasoci = False
             self.windows_visualizza = QtWidgets.QDialog()
             self.ui_visualizza = Ui_visualizzazioneliste()
             self.ui_visualizza.setupUi(self.windows_visualizza, False)
             self.windows_visualizza.show()
             if (self.windows_visualizza.exec() == 1):
                 print(self.ui_visualizza.getUtenteSelezionato())
+                GestorePrenotazioni.inserisciPrenotazione(data, riga, colonna, self.ui_visualizza.getUtenteSelezionato())
             self.visualizzaPrenotazioni()
         elif (self.tabellaprenotazioni.currentItem() == None):
             self.window_conferma = QtWidgets.QDialog()
             self.ui_conferma = Ui_conferma_prenotazione()
             self.ui_conferma.setupUi(self.window_conferma)
             if (self.window_conferma.exec() == 1):
-                GestorePrenotazioni.inserisciPrenotazione(data, riga, colonna)
+                GestorePrenotazioni.inserisciPrenotazione(data, riga, colonna,0)
             else:
                 pass
             self.visualizzaPrenotazioni()

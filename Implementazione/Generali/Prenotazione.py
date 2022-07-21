@@ -7,4 +7,3 @@ class Prenotazione():
         self.oraInizio = oraInizio
         self.campo = campo
         self.utente = utente
-from Implementazione.Generali.Campo import Campo

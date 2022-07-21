@@ -11,35 +11,35 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Dialog(object):
-    def setupUi(self, Dialog):
-        Dialog.setObjectName("Dialog")
-        Dialog.resize(400, 97)
-        self.buttonBox = QtWidgets.QDialogButtonBox(Dialog)
-        self.buttonBox.setGeometry(QtCore.QRect(0, 50, 341, 32))
+class Ui_erroreiscrizione(object):
+    def setupUi(self, erroreiscrizione):
+        erroreiscrizione.setObjectName("Dialog")
+        erroreiscrizione.resize(400, 93)
+        self.buttonBox = QtWidgets.QDialogButtonBox(erroreiscrizione)
+        self.buttonBox.setGeometry(QtCore.QRect(20, 50, 341, 32))
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
-        self.label = QtWidgets.QLabel(Dialog)
-        self.label.setGeometry(QtCore.QRect(20, 10, 281, 31))
+        self.label = QtWidgets.QLabel(erroreiscrizione)
+        self.label.setGeometry(QtCore.QRect(30, 20, 341, 20))
         self.label.setObjectName("label")
 
-        self.retranslateUi(Dialog)
-        self.buttonBox.accepted.connect(Dialog.accept) # type: ignore
-        self.buttonBox.rejected.connect(Dialog.reject) # type: ignore
-        QtCore.QMetaObject.connectSlotsByName(Dialog)
+        self.retranslateUi(erroreiscrizione)
+        self.buttonBox.accepted.connect(erroreiscrizione.accept) # type: ignore
+        self.buttonBox.rejected.connect(erroreiscrizione.reject) # type: ignore
+        QtCore.QMetaObject.connectSlotsByName(erroreiscrizione)
 
-    def retranslateUi(self, Dialog):
+    def retranslateUi(self, erroreiscrizione):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.label.setText(_translate("Dialog", "hai lasciato un campo vuoto, devono essere tutti pieni!"))
+        erroreiscrizione.setWindowTitle(_translate("erroreiscrizione", "Dialog"))
+        self.label.setText(_translate("erroreiscrizione", "hai lasciato un campo vuoto, devono essere tutti pieni!"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
+    erroreiscrizione = QtWidgets.QDialog()
+    ui = Ui_erroreiscrizione()
+    ui.setupUi(erroreiscrizione)
+    erroreiscrizione.show()
     sys.exit(app.exec_())

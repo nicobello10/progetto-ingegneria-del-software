@@ -29,13 +29,14 @@ class Login(object):
                 self.logIn.setEnabled(False)
                 self.logOut.setEnabled(True)
                 self.iscriviti.setEnabled(False)
-                if x==GestoreUtenti.admin :
-                    self.modifica.setEnabled(False)
-                    self.iscriviti.setEnabled(True)
-                if(GestoreUtenti.utenteConnesso.isCustode==True):
-                    self.modifica.setEnabled(False)
-                else:
-                    self.modifica.setEnabled(True)
+        if GestoreUtenti.utenteConnesso.isAdmin == True:
+            self.modifica.setEnabled(False)
+            self.iscriviti.setEnabled(True)
+        elif (GestoreUtenti.utenteConnesso.isCustode == True):
+            self.modifica.setEnabled(False)
+            self.iscriviti.setEnabled(False)
+        else:
+            self.modifica.setEnabled(True)
         if(GestoreUtenti.utenteConnesso==None):
             self.window_conferma = QtWidgets.QDialog()
             self.ui_conferma = Ui_conferma()

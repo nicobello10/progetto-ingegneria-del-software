@@ -45,7 +45,8 @@ class GestorePrenotazioni():
         if (colonna == 1): campo = GestorePrenotazioni.terraRossa_2
         if (colonna == 2): campo = GestorePrenotazioni.erbaSintetica
         if (colonna == 3): campo = GestorePrenotazioni.paddle
-        if(GestoreUtenti.utenteConnesso.isAdmin==False): prenotazione = Prenotazione(data, orario, campo, GestoreUtenti.utenteConnesso)
+        if(GestoreUtenti.utenteConnesso.isAdmin==False):
+            prenotazione = Prenotazione(data, orario, campo, GestoreUtenti.utenteConnesso)
         else: prenotazione = Prenotazione(data, orario, campo, GestoreUtenti.collectionUtenti[idUtente])
         GestorePrenotazioni.collectionPrenotazioni.append(prenotazione)
 
@@ -79,7 +80,14 @@ class GestorePrenotazioni():
         if (colonna == 2): campo = GestorePrenotazioni.erbaSintetica
         if (colonna == 3): campo = GestorePrenotazioni.paddle
         for x in GestorePrenotazioni.collectionPrenotazioni:
-            if(x.data==data and x.oraInizio==orario and x.campo==campo
-                    and (x.utente==GestoreUtenti.utenteConnesso or GestoreUtenti.utenteConnesso.isAdmin==True)):
+
+            if(x.data==data
+                    and x.oraInizio==orario
+                    and str(x.campo.tipoCampo) == campo.tipoCampo
+                    and (str(x.utente.nome) == GestoreUtenti.utenteConnesso.nome or GestoreUtenti.utenteConnesso.isAdmin==True)
+            ):
                 return x
             else:pass
+
+        def getCollectionPrenotazioni():
+            return GestorePrenotazioni.collectionPrenotazioni

@@ -21,7 +21,7 @@ class Ui_conferma(object):
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
         self.label = QtWidgets.QLabel(conferma_prenotazione)
-        self.label.setGeometry(QtCore.QRect(50, 30, 231, 41))
+        self.label.setGeometry(QtCore.QRect(20, 20, 261, 51))
         self.label.setObjectName("label")
 
         self.retranslateUi(conferma_prenotazione,messaggio)

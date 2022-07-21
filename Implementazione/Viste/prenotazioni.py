@@ -86,7 +86,19 @@ class Ui_prenotazioni(object):
         elif (self.tabellaprenotazioni.currentItem() == None):
             self.window_conferma = QtWidgets.QDialog()
             self.ui_conferma = Ui_conferma()
-            self.ui_conferma.setupUi(self.window_conferma,"Confermi la prenotazione?")
+            if colonna == 1 or colonna == 2:
+                if (GestorePrenotazioni.copertura == False):
+                    messaggiocopertura = "ll' aperto!"
+                else:
+                    messaggiocopertura = "l chiuso!"
+            elif colonna == 0:
+                messaggiocopertura = "l chiuso!"
+            elif colonna == 3:
+                messaggiocopertura = "ll' aperto!"
+            self.ui_conferma.setupUi(self.window_conferma,"Confermi la prenotazione?\n"
+                                                          "Ti ricordiamo che in questo periodo\n"
+                                                          "questo campo è a"
+                                     +messaggiocopertura)
             if (self.window_conferma.exec() == 1):
                 GestorePrenotazioni.inserisciPrenotazione(data, riga, colonna,0)
             else:

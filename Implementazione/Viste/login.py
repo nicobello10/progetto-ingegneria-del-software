@@ -69,7 +69,7 @@ class Login(object):
         if (GestoreUtenti.loginEffettuato):
             self.window_iscrizione = QtWidgets.QMainWindow()
             self.ui_iscrizione = UI_Iscrizione()
-            self.ui_iscrizione.setupUi(self.window_iscrizione,0)
+            self.ui_iscrizione.setupUi(self.window_iscrizione,0,False)
             self.window_iscrizione.show()
 
     def setupUi(self, Form):

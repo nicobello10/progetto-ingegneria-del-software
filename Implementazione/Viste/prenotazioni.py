@@ -83,7 +83,7 @@ class Ui_prenotazioni(object):
                 #refresha la tabella per vedere la prenotazione aggiunta
             self.visualizzaPrenotazioni()
         #prenotazione da utente
-        elif (self.tabellaprenotazioni.currentItem() == None):
+        elif (self.tabellaprenotazioni.currentItem() == None and len(self.tabellaprenotazioni.selectedIndexes())>0 ):
             self.window_conferma = QtWidgets.QDialog()
             self.ui_conferma = Ui_conferma()
             if colonna == 1 or colonna == 2:
@@ -101,8 +101,6 @@ class Ui_prenotazioni(object):
                                      +messaggiocopertura)
             if (self.window_conferma.exec() == 1):
                 GestorePrenotazioni.inserisciPrenotazione(data, riga, colonna,0)
-            else:
-                pass
             self.visualizzaPrenotazioni()
         else:
             self.window_conferma = QtWidgets.QDialog()

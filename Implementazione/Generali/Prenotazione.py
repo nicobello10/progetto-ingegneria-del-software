@@ -11,7 +11,6 @@ class Prenotazione():
 
     def aggiungiPartita(self,partita):
         self.collectionPartite.append(partita)
-        print(self.collectionPartite)
 
     def modificaPartita(self,rigapartita,partitamodificata):
         self.collectionPartite[rigapartita]=partitamodificata

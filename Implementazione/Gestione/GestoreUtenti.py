@@ -15,14 +15,13 @@ class GestoreUtenti():
     collectionUtenti.append(admin)
     collectionUtenti.append(custode)
     loginEffettuato=False
-    contaUtenti=0
+    contaUtenti=5
     contaSoci=0
 
 
     def inserisciUtente(Utente):
         GestoreUtenti.collectionUtenti.insert(GestoreUtenti.contaUtenti, Utente)
         GestoreUtenti.contaUtenti+=1
-        print(len(GestoreUtenti.collectionUtenti))
 
     def modificaUtente(utente,utentemodificato):
         for index, item in enumerate(GestoreUtenti.collectionUtenti):

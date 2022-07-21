@@ -17,7 +17,12 @@ from Implementazione.Viste.modificaIscrizione import Ui_modificaiscrizione
 class UI_Iscrizione(object):
 
     def creaUtente(self):
-        if(self.nome.text() !="" and self.cognome.text()!= "" and self.nomeUtente.text()!= "" and self.password.text() != "" and self.cellulare.text() != ""and self.dataNascita.text() != ""):
+        if(self.nome.text() !=""
+                and self.cognome.text()!= ""
+                and self.nomeUtente.text()!= ""
+                and self.password.text() != ""
+                and self.cellulare.text() != ""
+                and self.dataNascita.text() != ""):
             campoNome=self.nome.text()
             campoCognome=self.cognome.text()
             campoNomeUtente=self.nomeUtente.text()
@@ -126,12 +131,6 @@ class UI_Iscrizione(object):
             self.cellulare.setText(GestoreUtenti.utenteConnesso.cellulare)
             self.invia.clicked.connect(self.modificaUtente)
         elif(GestoreUtenti.loginEffettuato and GestoreUtenti.utenteConnesso.isAdmin==True):
-            self.nome.setText(GestoreUtenti.collectionUtenti[idUtente].nome)
-            self.cognome.setText(GestoreUtenti.collectionUtenti[idUtente].cognome)
-            self.dataNascita.setText(GestoreUtenti.collectionUtenti[idUtente].dataNascita)
-            self.password.setText(GestoreUtenti.collectionUtenti[idUtente].password)
-            self.nomeUtente.setText(GestoreUtenti.collectionUtenti[idUtente].nomeUtente)
-            self.cellulare.setText(GestoreUtenti.collectionUtenti[idUtente].cellulare)
             self.invia.clicked.connect(self.modificaUtenteAdmin)
         else:
             self.invia.clicked.connect(self.creaUtente)

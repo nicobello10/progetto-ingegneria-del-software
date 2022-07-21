@@ -48,6 +48,7 @@ class Login(object):
             self.window_conferma.show()
             self.logIn.setEnabled(True)
             self.logOut.setEnabled(False)
+#attivo tasto iscrivi
             self.iscriviti.setEnabled(True)
 
 

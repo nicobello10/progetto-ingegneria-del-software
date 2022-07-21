@@ -110,7 +110,7 @@ class Ui_registrazionesocio(object):
         self.invia.raise_()
 
         #azioni dei pulsanti
-        if GestoreUtenti.utenteConnesso.getTesseramento() ==True:
+        if (GestoreUtenti.utenteConnesso.getTesseramento() ==True or GestoreUtenti.admin.isAdmin == True or GestoreUtenti.admin.isCustode== True):
             self.invia.setEnabled(False)
         else:
             self.invia.clicked.connect(self.tesseramento)

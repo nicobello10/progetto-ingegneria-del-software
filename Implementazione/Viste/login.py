@@ -27,7 +27,10 @@ class Login(object):
                 self.loginPopup()
                 self.logIn.setEnabled(False)
                 self.logOut.setEnabled(True)
-
+                if x.nomeUtente== "admin" and x.password=="admin":
+                    self.modifica.setEnabled(False)
+                else:
+                    self.modifica.setEnabled(True)
 
     def loginPopup(self):
         self.window_conferma = QtWidgets.QDialog()
@@ -49,7 +52,7 @@ class Login(object):
     def iscrizione(self):
         self.window_iscrizione = QtWidgets.QMainWindow()
         self.ui_iscrizione = UI_Iscrizione()
-        self.ui_iscrizione.setupUi(self.window_iscrizione,0)
+        self.ui_iscrizione.setupUi(self.window_iscrizione,1)
         self.window_iscrizione.show()
 
     def modificaDati(self):
@@ -87,18 +90,20 @@ class Login(object):
         self.label_2 = QtWidgets.QLabel(Form)
         self.label_2.setGeometry(QtCore.QRect(100, 100, 60, 16))
         self.label_2.setObjectName("label_2")
+
         if(GestoreUtenti.loginEffettuato):
             self.logOut.setEnabled(True)
             self.logIn.setEnabled(False)
             self.nomeUtente.setText(GestoreUtenti.utenteConnesso.nomeUtente)
+
         else:
             self.logOut.setEnabled(False)
             self.logIn.setEnabled(True)
 
-
         #azione quando i pulsanti si cliccano
         self.logIn.clicked.connect(self.autenticazione)
         self.iscriviti.clicked.connect(self.iscrizione)
+
         self.modifica.clicked.connect(self.modificaDati)
         self.logOut.clicked.connect(self.logoutPopup)
 

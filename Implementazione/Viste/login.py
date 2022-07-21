@@ -96,9 +96,6 @@ class Login(object):
             self.logOut.setEnabled(False)
             self.logIn.setEnabled(True)
 
-#se sei admin non puoi modificare dalla schermata login
-        if (GestoreUtenti.admin.isAdmin == True):
-            self.modifica.setEnabled(False)
         #azione quando i pulsanti si cliccano
         self.logIn.clicked.connect(self.autenticazione)
         self.iscriviti.clicked.connect(self.iscrizione)

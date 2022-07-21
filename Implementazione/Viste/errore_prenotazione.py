@@ -12,7 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_erroreprenotazione(object):
-    def setupUi(self, erroreprenotazione):
+    def setupUi(self, erroreprenotazione,messaggio):
         erroreprenotazione.setObjectName("erroreprenotazione")
         erroreprenotazione.resize(400, 106)
         self.buttonBox = QtWidgets.QDialogButtonBox(erroreprenotazione)
@@ -24,15 +24,15 @@ class Ui_erroreprenotazione(object):
         self.errore.setGeometry(QtCore.QRect(80, 30, 181, 51))
         self.errore.setObjectName("errore")
 
-        self.retranslateUi(erroreprenotazione)
+        self.retranslateUi(erroreprenotazione,messaggio)
         self.buttonBox.accepted.connect(erroreprenotazione.accept) # type: ignore
         self.buttonBox.rejected.connect(erroreprenotazione.reject) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(erroreprenotazione)
 
-    def retranslateUi(self, erroreprenotazione):
+    def retranslateUi(self, erroreprenotazione,messaggio):
         _translate = QtCore.QCoreApplication.translate
         erroreprenotazione.setWindowTitle(_translate("erroreprenotazione", "Dialog"))
-        self.errore.setText(_translate("erroreprenotazione", "<html><head/><body><p>Orario già prenotato.</p><p>Prenotazione non effettuata.</p></body></html>"))
+        self.errore.setText(_translate("erroreprenotazione", messaggio))
 
 
 if __name__ == "__main__":

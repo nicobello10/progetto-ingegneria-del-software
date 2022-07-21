@@ -49,7 +49,7 @@ class Ui_prenotazioni(object):
         colonna = self.tabellaprenotazioni.currentColumn()
         # prenotazione se si è loggati come admin
         # prenotazione da utente
-        if (self.tabellaprenotazioni.currentItem().text()==GestoreUtenti.utenteConnesso.nome
+        if (self.tabellaprenotazioni.currentItem()!=None and self.tabellaprenotazioni.currentItem().text()==GestoreUtenti.utenteConnesso.nome
         or GestoreUtenti.utenteConnesso.isAdmin==True):
             self.window_conferma = QtWidgets.QDialog()
             self.ui_conferma = Ui_conferma()
@@ -62,7 +62,7 @@ class Ui_prenotazioni(object):
         else:
             self.window_conferma = QtWidgets.QDialog()
             self.ui_conferma = Ui_erroreprenotazione()
-            self.ui_conferma.setupUi(self.window_conferma)
+            self.ui_conferma.setupUi(self.window_conferma,"Nessuna prenotazione\nda eliminare")
             self.window_conferma.show()
 
     def inserisciPrenotazione(self):
@@ -107,7 +107,7 @@ class Ui_prenotazioni(object):
         else:
             self.window_conferma = QtWidgets.QDialog()
             self.ui_conferma = Ui_erroreprenotazione()
-            self.ui_conferma.setupUi(self.window_conferma)
+            self.ui_conferma.setupUi(self.window_conferma,"Prenotazione\nnon disponibile")
             self.window_conferma.show()
 
     def visualizzaPrenotazioni(self):

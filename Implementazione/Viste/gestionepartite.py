@@ -14,12 +14,23 @@ from Implementazione.Generali.Partita import Partita
 from Implementazione.Gestione.GestoreUtenti import GestoreUtenti
 from PyQt5.QtWidgets import QTableWidgetItem
 
+from Implementazione.Viste.modificapartita import Ui_modificapartita
 
 
 class Ui_gestionepartite(object):
 
+    def modificaPartita(self):
+        self.tabellapartite.currentRow()
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Ui_modificapartita()
+        self.ui.setupUi(self.window,self.tabellapartite.currentRow())
+        self.window.show()
+        if(self.ui.modificaPartita()):self.window.hide()
+
+
     def aggiungiPartita(self):
-        giocatoreuno=GestoreUtenti.utenteConnesso.nome
+        if(GestoreUtenti.utenteConnesso.isAdmin==False):giocatoreuno=GestoreUtenti.utenteConnesso.nome
+        else: giocatoreuno=self.giocatoreuno.text()
         giocatoredue=self.giocatoredue.text()
         punteggiouno=self.spinuno.value()
         punteggiodue=self.spindue.value()
@@ -48,8 +59,10 @@ class Ui_gestionepartite(object):
         self.giocatoreuno = QtWidgets.QLineEdit(gestionepartite)
         self.giocatoreuno.setGeometry(QtCore.QRect(40, 40, 113, 21))
         self.giocatoreuno.setObjectName("giocatoreuno")
-        self.giocatoreuno.setText(GestoreUtenti.utenteConnesso.nome)
-        self.giocatoreuno.setEnabled(False)
+
+        if GestoreUtenti.utenteConnesso.isAdmin==False:
+            self.giocatoreuno.setEnabled(False)
+            self.giocatoreuno.setText(GestoreUtenti.utenteConnesso.nome)
         self.giocatoredue = QtWidgets.QLineEdit(gestionepartite)
         self.giocatoredue.setGeometry(QtCore.QRect(190, 40, 113, 21))
         self.giocatoredue.setObjectName("giocatoredue")
@@ -74,7 +87,9 @@ class Ui_gestionepartite(object):
         self.tabellapartite.setObjectName("tabellapartite")
         self.tabellapartite.setColumnCount(4)
         self.tabellapartite.setRowCount(0)
+        self.tabellapartite.setSelectionBehavior(QtWidgets.QTableView.SelectRows)
         self.tabellapartite.setHorizontalHeaderLabels(["Giocatore 1","Punteggio","Giocatore 2","Punteggio"])
+        self.tabellapartite.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.labeltre = QtWidgets.QLabel(gestionepartite)
         self.labeltre.setGeometry(QtCore.QRect(10, 160, 141, 16))
         self.labeltre.setObjectName("labeltre")
@@ -88,7 +103,11 @@ class Ui_gestionepartite(object):
         self.aggiungipartita.setGeometry(QtCore.QRect(30, 120, 113, 32))
         self.aggiungipartita.setObjectName("aggiungipartita")
 
+        #visualizza subito le partite fatte quel giorno dall'utente
+        self.visualizzaPartite()
+
         self.aggiungipartita.clicked.connect(self.aggiungiPartita)
+        self.tabellapartite.doubleClicked.connect(self.modificaPartita)
 
         self.retranslateUi(gestionepartite)
         QtCore.QMetaObject.connectSlotsByName(gestionepartite)

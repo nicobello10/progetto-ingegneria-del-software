@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 # Form implementation generated from reading ui file 'registrazione_utente.ui'
 #
@@ -13,6 +12,7 @@ from Implementazione.Generali.Utente import Utente
 from Implementazione.Gestione.GestoreUtenti import GestoreUtenti
 from Implementazione.Viste.confermaiscrizione import Ui_ConfermaIscrizione
 from Implementazione.Viste.erroreiscrizione import Ui_erroreiscrizione
+from Implementazione.Viste.modificaIscrizione import Ui_modificaiscrizione
 
 class UI_Iscrizione(object):
 
@@ -33,13 +33,19 @@ class UI_Iscrizione(object):
         else:
             self.popupEI()
 
-
+#popuo errore nell'iscirzione per campi mancanti
     def popupEI(self):
         self.window_eiscrizione = QtWidgets.QDialog()
         self.ui_eiscrizione = Ui_erroreiscrizione()
         self.ui_eiscrizione.setupUi(self.window_eiscrizione)
         self.window_eiscrizione.show()
 
+#popup modifica avvenuta con successo
+    def popupMod(self):
+        self.window_miscrizione = QtWidgets.QDialog()
+        self.ui_miscrizione = Ui_modificaiscrizione()
+        self.ui_miscrizione.setupUi(self.window_miscrizione)
+        self.window_miscrizione.show()
 
     def modificaUtente(self):
         campoNome = self.nome.text()
@@ -50,10 +56,7 @@ class UI_Iscrizione(object):
         campoDataNascita = self.dataNascita.text()
         utenteModificato=Utente(campoNome,campoCognome,campoDataNascita,campoCellulare,campoPassword,campoNomeUtente)
         GestoreUtenti.modificaUtente(GestoreUtenti.utenteConnesso,utenteModificato)
-        self.window_conferma = QtWidgets.QDialog()
-        self.ui_conferma = Ui_ConfermaIscrizione()
-        self.ui_conferma.setupUi(self.window_conferma)
-        self.window_conferma.show()
+        self.popupMod()
 
     def modificaUtenteAdmin(self):
         idUtente=UI_Iscrizione.idUtente
@@ -66,13 +69,7 @@ class UI_Iscrizione(object):
         campoDataNascita = self.dataNascita.text()
         utenteModificato=Utente(campoNome,campoCognome,campoDataNascita,campoCellulare,campoPassword,campoNomeUtente)
         GestoreUtenti.modificaUtente(GestoreUtenti.collectionUtenti[idUtente],utenteModificato)
-        self.window_conferma = QtWidgets.QDialog()
-        self.ui_conferma = Ui_ConfermaIscrizione()
-        self.ui_conferma.setupUi(self.window_conferma)
-        self.window_conferma.show()
-
-
-
+        self.popupMod()
 
 
     def setupUi(self, Iscrizione,idUtente):

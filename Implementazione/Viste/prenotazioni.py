@@ -11,9 +11,11 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QTableWidgetItem
 
+from Implementazione.Gestione.GestoreUtenti import GestoreUtenti
 from Implementazione.Gestione.GestorePrenotazioni import GestorePrenotazioni
 from Implementazione.Viste.conferma_prenotazione import Ui_conferma_prenotazione
 from Implementazione.Viste.errore_prenotazione import Ui_erroreprenotazione
+from Implementazione.Viste.visualizzazione_liste import Ui_visualizzazioneliste
 
 
 class Ui_prenotazioni(object):
@@ -25,12 +27,19 @@ class Ui_prenotazioni(object):
             .replace(')','')
         riga=self.tabellaprenotazioni.currentRow()
         colonna=self.tabellaprenotazioni.currentColumn()
-        if(self.tabellaprenotazioni.currentItem()==None ):
+        if(self.tabellaprenotazioni.currentItem()==None and GestoreUtenti.utenteConnesso.isAdmin==True):
+            self.visualizzasoci = False
+            self.windows_visualizza = QtWidgets.QDialog()
+            self.ui_visualizza = Ui_visualizzazioneliste()
+            self.ui_visualizza.setupUi(self.windows_visualizza, self.visualizzasoci)
+            self.windows_visualizza.show()
+            self.visualizzaPrenotazioni()
+        elif (self.tabellaprenotazioni.currentItem() == None):
             self.window_conferma = QtWidgets.QDialog()
             self.ui_conferma = Ui_conferma_prenotazione()
             self.ui_conferma.setupUi(self.window_conferma)
-            if(self.window_conferma.exec()==1):
-                GestorePrenotazioni.inserisciPrenotazione(data,riga,colonna)
+            if (self.window_conferma.exec() == 1):
+                GestorePrenotazioni.inserisciPrenotazione(data, riga, colonna)
             else:
                 pass
             self.visualizzaPrenotazioni()
@@ -64,10 +73,13 @@ class Ui_prenotazioni(object):
                     colonna=2
                 if GestorePrenotazioni.collectionPrenotazioni[i].campo.tipoCampo=="Paddle":
                     colonna=3
-                if GestorePrenotazioni.collectionPrenotazioni[i].oraInizio == "08:00":
-                    item = QTableWidgetItem(GestorePrenotazioni.collectionPrenotazioni[i].utente.nome)
-                    self.tabellaprenotazioni.setItem(0, colonna, item)
-                elif GestorePrenotazioni.collectionPrenotazioni[i].oraInizio == "09:00":
+                for j in range (8,23):
+                    if j<10: oraInizio="0"+str(j)+":00"
+                    else: oraInizio=str(j)+":00"
+                    if GestorePrenotazioni.collectionPrenotazioni[i].oraInizio == oraInizio:
+                        item = QTableWidgetItem(GestorePrenotazioni.collectionPrenotazioni[i].utente.nome)
+                        self.tabellaprenotazioni.setItem(j-8, colonna, item)
+                '''elif GestorePrenotazioni.collectionPrenotazioni[i].oraInizio == "09:00":
                     item = QTableWidgetItem(GestorePrenotazioni.collectionPrenotazioni[i].utente.nome)
                     self.tabellaprenotazioni.setItem(1, colonna, item)
                 elif GestorePrenotazioni.collectionPrenotazioni[i].oraInizio == "10:00":
@@ -108,7 +120,7 @@ class Ui_prenotazioni(object):
                     self.tabellaprenotazioni.setItem(13, colonna, item)
                 elif GestorePrenotazioni.collectionPrenotazioni[i].oraInizio == "22:00":
                     item = QTableWidgetItem(GestorePrenotazioni.collectionPrenotazioni[i].utente.nome)
-                    self.tabellaprenotazioni.setItem(14, colonna, item)
+                    self.tabellaprenotazioni.setItem(14, colonna, item)'''
 
 
 

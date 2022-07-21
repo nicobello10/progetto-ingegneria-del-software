@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Implementazione.Viste.login import Login
 from Implementazione.Viste.registrazione_socio import Ui_registrazionesocio
-from Implementazione.Gestione.GestoreUtente import GestoreUtente
+from Implementazione.Gestione.GestoreUtenti import GestoreUtenti
 from Implementazione.Viste.gestione_organizzazione import Ui_gestioneOrganizzazione
 from Implementazione.Viste.prenotazioni import Ui_prenotazioni
 
@@ -23,21 +23,21 @@ class Ui_Form(object):
         self.window.show()
 
     def gestioneTesseramento(self):
-        if GestoreUtente.loginEffettuato == True:
+        if GestoreUtenti.loginEffettuato == True:
             self.window=QtWidgets.QWidget()
             self.ui=Ui_registrazionesocio()
             self.ui.setupUi(self.window)
             self.window.show()
 
     def gestioneOrganizzazione(self):
-        if (GestoreUtente.loginEffettuato == True and GestoreUtente.utenteConnesso.isAdmin == True):
+        if (GestoreUtenti.loginEffettuato == True and GestoreUtenti.utenteConnesso.isAdmin == True):
             self.window = QtWidgets.QMainWindow()
             self.ui = Ui_gestioneOrganizzazione()
             self.ui.setupUi(self.window)
             self.window.show()
 
     def gestionePrenotazioni(self):
-        if (GestoreUtente.loginEffettuato == True):
+        if (GestoreUtenti.loginEffettuato == True):
             self.window = QtWidgets.QMainWindow()
             self.ui = Ui_prenotazioni()
             self.ui.setupUi(self.window)

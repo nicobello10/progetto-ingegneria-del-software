@@ -10,7 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Implementazione.Viste.registrazione_utente import UI_Iscrizione
-from Implementazione.Gestione.GestoreUtente import GestoreUtente
+from Implementazione.Gestione.GestoreUtenti import GestoreUtenti
 from Implementazione.Generali.Utente import Utente
 from Implementazione.Viste.logineffettuato import Ui_logineffettuato
 
@@ -20,10 +20,10 @@ class Login(object):
     def autenticazione(self):
         nomeUtente=self.nomeUtente.text()
         pwd=self.password.text()
-        for x in GestoreUtente.collectionUtenti:
+        for x in GestoreUtenti.collectionUtenti:
             if x.nomeUtente == nomeUtente and x.password == pwd:
-                GestoreUtente.setLoginEffettuato()
-                GestoreUtente.setUtenteConnesso(x)
+                GestoreUtenti.setLoginEffettuato()
+                GestoreUtenti.setUtenteConnesso(x)
                 self.loginPopup()
                 self.logIn.setEnabled(False)
                 self.logOut.setEnabled(True)
@@ -36,8 +36,8 @@ class Login(object):
         self.window_conferma.show()
 
     def logoutPopup(self):
-        if GestoreUtente.loginEffettuato==True:
-            GestoreUtente.setLogoutEffettuato()
+        if GestoreUtenti.loginEffettuato==True:
+            GestoreUtenti.setLogoutEffettuato()
             self.window_conferma = QtWidgets.QDialog()
             self.ui_conferma = Ui_logineffettuato()
             self.ui_conferma.setupUi(self.window_conferma)
@@ -53,7 +53,7 @@ class Login(object):
         self.window_iscrizione.show()
 
     def modificaDati(self):
-        if (GestoreUtente.loginEffettuato):
+        if (GestoreUtenti.loginEffettuato):
             self.window_iscrizione = QtWidgets.QMainWindow()
             self.ui_iscrizione = UI_Iscrizione()
             self.ui_iscrizione.setupUi(self.window_iscrizione,0)
@@ -87,10 +87,10 @@ class Login(object):
         self.label_2 = QtWidgets.QLabel(Form)
         self.label_2.setGeometry(QtCore.QRect(100, 100, 60, 16))
         self.label_2.setObjectName("label_2")
-        if(GestoreUtente.loginEffettuato):
+        if(GestoreUtenti.loginEffettuato):
             self.logOut.setEnabled(True)
             self.logIn.setEnabled(False)
-            self.nomeUtente.setText(GestoreUtente.utenteConnesso.nomeUtente)
+            self.nomeUtente.setText(GestoreUtenti.utenteConnesso.nomeUtente)
         else:
             self.logOut.setEnabled(False)
             self.logIn.setEnabled(True)

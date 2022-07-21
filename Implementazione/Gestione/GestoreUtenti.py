@@ -1,6 +1,6 @@
 from Implementazione.Generali.Utente import Utente
 
-class GestoreUtente():
+class GestoreUtenti():
     admin=Utente("Amministratore"," "," "," ","admin","admin")
     admin.isAdmin=True
     custode = Utente("Custode", " ", " ", " ", "custode", "custode")
@@ -20,40 +20,40 @@ class GestoreUtente():
 
 
     def inserisciUtente(Utente):
-        GestoreUtente.collectionUtenti.insert(GestoreUtente.contaUtenti,Utente)
-        GestoreUtente.contaUtenti+=1
-        print(len(GestoreUtente.collectionUtenti))
+        GestoreUtenti.collectionUtenti.insert(GestoreUtenti.contaUtenti, Utente)
+        GestoreUtenti.contaUtenti+=1
+        print(len(GestoreUtenti.collectionUtenti))
 
     def modificaUtente(utente,utentemodificato):
-        for index, item in enumerate(GestoreUtente.collectionUtenti):
+        for index, item in enumerate(GestoreUtenti.collectionUtenti):
             if(item == utente):
-                GestoreUtente.collectionUtenti[index]=utentemodificato
+                GestoreUtenti.collectionUtenti[index]=utentemodificato
                 #print (f"{item} {utentemodificato}")
 
 
     def ricercaUtente(Utente):
-        for x in GestoreUtente.collectionUtenti:
+        for x in GestoreUtenti.collectionUtenti:
             if (x==Utente): return x
 
     def visualizzaListaUtenti():
-        print(GestoreUtente.collectionUtenti)
+        print(GestoreUtenti.collectionUtenti)
 
     def setLoginEffettuato():
-        GestoreUtente.loginEffettuato=True
+        GestoreUtenti.loginEffettuato=True
         #GestoreUtente.utenteConnesso=utente
 
     def setUtenteConnesso(utente):
-        GestoreUtente.utenteConnesso=utente
+        GestoreUtenti.utenteConnesso=utente
 
     def setLogoutEffettuato():
-        GestoreUtente.loginEffettuato = False
+        GestoreUtenti.loginEffettuato = False
 
     def getUtenteConnesso(self):
-        return GestoreUtente.utente
+        return GestoreUtenti.utente
 
     def creaTesseramento(email,codiceFiscale,tipoTesseramento):
-        GestoreUtente.utenteConnesso.tesseramento(email,codiceFiscale,tipoTesseramento)
-        GestoreUtente.contaSoci+=1
+        GestoreUtenti.utenteConnesso.tesseramento(email, codiceFiscale, tipoTesseramento)
+        GestoreUtenti.contaSoci+=1
 
     def getCollectionUtenti():
-        return GestoreUtente.collectionUtenti
+        return GestoreUtenti.collectionUtenti

@@ -3,7 +3,7 @@ import datetime
 
 from Implementazione.Generali.Prenotazione import Prenotazione
 from Implementazione.Generali.Utente import Utente
-from Implementazione.Gestione.GestoreUtente import GestoreUtente
+from Implementazione.Gestione.GestoreUtenti import GestoreUtenti
 
 
 class GestorePrenotazioni():
@@ -45,7 +45,7 @@ class GestorePrenotazioni():
         if (colonna == 1): campo = GestorePrenotazioni.terraRossa_2
         if (colonna == 2): campo = GestorePrenotazioni.erbaSintetica
         if (colonna == 3): campo = GestorePrenotazioni.paddle
-        prenotazione = Prenotazione(data, orario, campo, GestoreUtente.utenteConnesso)
+        prenotazione = Prenotazione(data, orario, campo, GestoreUtenti.utenteConnesso)
         GestorePrenotazioni.collectionPrenotazioni.append(prenotazione)
 
     def modificaPrenotazione(self):

@@ -10,7 +10,7 @@
 
 from PyQt5 import QtCore, QtWidgets
 from Implementazione.Generali.Utente import Utente
-from Implementazione.Gestione.GestoreUtente import GestoreUtente
+from Implementazione.Gestione.GestoreUtenti import GestoreUtenti
 from Implementazione.Viste.confermaiscrizione import Ui_ConfermaIscrizione
 from Implementazione.Viste.erroreiscrizione import Ui_erroreiscrizione
 
@@ -25,7 +25,7 @@ class UI_Iscrizione(object):
             campoCellulare=self.cellulare.text()
             campoDataNascita=self.dataNascita.text()
             nuovoUtente=Utente(campoNome,campoCognome,campoDataNascita,campoCellulare,campoPassword,campoNomeUtente)
-            GestoreUtente.inserisciUtente(nuovoUtente)
+            GestoreUtenti.inserisciUtente(nuovoUtente)
             self.window_conferma = QtWidgets.QDialog()
             self.ui_conferma = Ui_ConfermaIscrizione()
             self.ui_conferma.setupUi(self.window_conferma)
@@ -49,7 +49,7 @@ class UI_Iscrizione(object):
         campoCellulare = self.cellulare.text()
         campoDataNascita = self.dataNascita.text()
         utenteModificato=Utente(campoNome,campoCognome,campoDataNascita,campoCellulare,campoPassword,campoNomeUtente)
-        GestoreUtente.modificaUtente(GestoreUtente.utenteConnesso,utenteModificato)
+        GestoreUtenti.modificaUtente(GestoreUtenti.utenteConnesso,utenteModificato)
         self.window_conferma = QtWidgets.QDialog()
         self.ui_conferma = Ui_ConfermaIscrizione()
         self.ui_conferma.setupUi(self.window_conferma)
@@ -63,7 +63,7 @@ class UI_Iscrizione(object):
         campoCellulare = self.cellulare.text()
         campoDataNascita = self.dataNascita.text()
         utenteModificato=Utente(campoNome,campoCognome,campoDataNascita,campoCellulare,campoPassword,campoNomeUtente)
-        GestoreUtente.modificaUtente(GestoreUtente.collectionUtenti[idUtente+2],utenteModificato)
+        GestoreUtenti.modificaUtente(GestoreUtenti.collectionUtenti[idUtente+2],utenteModificato)
         self.window_conferma = QtWidgets.QDialog()
         self.ui_conferma = Ui_ConfermaIscrizione()
         self.ui_conferma.setupUi(self.window_conferma)

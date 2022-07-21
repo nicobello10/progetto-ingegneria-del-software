@@ -7,3 +7,8 @@ class Prenotazione():
         self.oraInizio = oraInizio
         self.campo = campo
         self.utente = utente
+        self.collectionPartite=[]
+
+    def aggiungiPartita(self,partita):
+        self.collectionPartite.append(partita)
+        print(self.collectionPartite)

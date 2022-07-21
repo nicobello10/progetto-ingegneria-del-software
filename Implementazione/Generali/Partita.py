@@ -1,11 +1,11 @@
 
 
 class Partita():
-    def __init__(self, perdente,punteggioGiocatoreDue,PunteggioGiocatoreUno,vincitore):
-        self.perdente=perdente
-        self.punteggioGiocatoreDue=punteggioGiocatoreDue
-        self.PunteggioGiocatoreUno=PunteggioGiocatoreUno
-        self.vincitore=vincitore
+    def __init__(self, giocatoreuno, punteggiouno, giocatoredue,punteggiodue):
+        self.giocatoreuno=giocatoreuno
+        self.punteggiouno=punteggiouno
+        self.punteggiodue=punteggiodue
+        self.giocatoredue=giocatoredue
 
     def getPerdente(self):
         return  self.perdente
@@ -14,13 +14,13 @@ class Partita():
         self.perdente=perdente
 
     def getPunteggioGiocatoreDue(self):
-        return punteggioGiocatoreDue
+        return self.punteggiodue
 
     def setPunteggioGiocatoreDue(self):
         self.punteggioGiocatoreDue=punteggioGiocatoreDue
 
     def getPunteggioGiocatoreUno(self):
-        return self.punteggioGiocatoreUno
+        return self.punteggiouno
 
     def setPunteggioGiocatoreUno(self):
         self.punteggioGiocatoreUno=punteggioGiocatoreUno

@@ -16,9 +16,23 @@ from Implementazione.Gestione.GestorePrenotazioni import GestorePrenotazioni
 from Implementazione.Viste.conferma_prenotazione import Ui_conferma_prenotazione
 from Implementazione.Viste.errore_prenotazione import Ui_erroreprenotazione
 from Implementazione.Viste.visualizzazione_liste import Ui_visualizzazioneliste
+from Implementazione.Viste.gestionepartite import Ui_gestionepartite
 
 
 class Ui_prenotazioni(object):
+
+    def gestionePartite(self):
+        data = str(self.calendario.selectedDate()) \
+            .replace('PyQt5.QtCore.QDate', '') \
+            .replace('(', '') \
+            .replace(')', '')
+        riga = self.tabellaprenotazioni.currentRow()
+        colonna = self.tabellaprenotazioni.currentColumn()
+        self.window = QtWidgets.QMainWindow()
+        prenotazione=GestorePrenotazioni.cercaPrenotazione(data,riga,colonna)
+        self.ui = Ui_gestionepartite()
+        self.ui.setupUi(self.window,prenotazione)
+        self.window.show()
 
     def eliminaPrenotazione(self):
         data = str(self.calendario.selectedDate()) \
@@ -138,9 +152,9 @@ class Ui_prenotazioni(object):
         self.eliminaprenotazione = QtWidgets.QPushButton(prenotazioni)
         self.eliminaprenotazione.setGeometry(QtCore.QRect(210, 260, 113, 32))
         self.eliminaprenotazione.setObjectName("eliminaprenotazione")
-        '''self.modificaprenotazione = QtWidgets.QPushButton(prenotazioni)
-        self.modificaprenotazione.setGeometry(QtCore.QRect(210, 220, 113, 32))
-        self.modificaprenotazione.setObjectName("modificaprenotazione")'''
+        self.gestionepartite = QtWidgets.QPushButton(prenotazioni)
+        self.gestionepartite.setGeometry(QtCore.QRect(50, 230, 113, 32))
+        self.gestionepartite.setObjectName("modificaprenotazione")
 
 
         self.retranslateUi(prenotazioni)
@@ -158,12 +172,15 @@ class Ui_prenotazioni(object):
         #elimina prenotazione
         self.eliminaprenotazione.clicked.connect(self.eliminaPrenotazione)
 
+        #gestione partite
+        self.gestionepartite.clicked.connect(self.gestionePartite)
+
     def retranslateUi(self, prenotazioni):
         _translate = QtCore.QCoreApplication.translate
         prenotazioni.setWindowTitle(_translate("prenotazioni", "Form"))
         self.inserisciprenotazione.setText(_translate("prenotazioni", "Inserisci"))
         self.eliminaprenotazione.setText(_translate("prenotazioni", "Elimina"))
-        #self.modificaprenotazione.setText(_translate("prenotazioni", "Modifica"))
+        self.gestionepartite.setText(_translate("prenotazioni", "Partite"))
 
 
 if __name__ == "__main__":

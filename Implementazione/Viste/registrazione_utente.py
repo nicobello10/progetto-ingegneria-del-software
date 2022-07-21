@@ -12,23 +12,34 @@ from PyQt5 import QtCore, QtWidgets
 from Implementazione.Generali.Utente import Utente
 from Implementazione.Gestione.GestoreUtente import GestoreUtente
 from Implementazione.Viste.confermaiscrizione import Ui_ConfermaIscrizione
-
+from Implementazione.Viste.erroreiscrizione import Ui_erroreiscrizione
 
 class UI_Iscrizione(object):
 
     def creaUtente(self):
-        campoNome=self.nome.text()
-        campoCognome=self.cognome.text()
-        campoNomeUtente=self.nomeUtente.text()
-        campoPassword=self.password.text()
-        campoCellulare=self.cellulare.text()
-        campoDataNascita=self.dataNascita.text()
-        nuovoUtente=Utente(campoNome,campoCognome,campoDataNascita,campoCellulare,campoPassword,campoNomeUtente)
-        GestoreUtente.inserisciUtente(nuovoUtente)
-        self.window_conferma = QtWidgets.QDialog()
-        self.ui_conferma = Ui_ConfermaIscrizione()
-        self.ui_conferma.setupUi(self.window_conferma)
-        self.window_conferma.show()
+        if(self.nome.text() !="" and self.cognome.text()!= "" and self.nomeUtente.text()!= "" and self.password.text() != "" and self.cellulare.text() != ""and self.dataNascita.text() != ""):
+            campoNome=self.nome.text()
+            campoCognome=self.cognome.text()
+            campoNomeUtente=self.nomeUtente.text()
+            campoPassword=self.password.text()
+            campoCellulare=self.cellulare.text()
+            campoDataNascita=self.dataNascita.text()
+            nuovoUtente=Utente(campoNome,campoCognome,campoDataNascita,campoCellulare,campoPassword,campoNomeUtente)
+            GestoreUtente.inserisciUtente(nuovoUtente)
+            self.window_conferma = QtWidgets.QDialog()
+            self.ui_conferma = Ui_ConfermaIscrizione()
+            self.ui_conferma.setupUi(self.window_conferma)
+            self.window_conferma.show()
+        else:
+            self.popupEI()
+
+
+    def popupEI(self):
+        self.window_eiscrizione = QtWidgets.QDialog()
+        self.ui_eiscrizione = Ui_erroreiscrizione()
+        self.ui_eiscrizione.setupUi(self.window_eiscrizione)
+        self.window_eiscrizione.show()
+
 
     def modificaUtente(self):
         campoNome = self.nome.text()

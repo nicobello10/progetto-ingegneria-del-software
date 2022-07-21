@@ -5,7 +5,13 @@ class GestoreUtente():
     admin.isAdmin=True
     custode = Utente("Custode", " ", " ", " ", "custode", "custode")
     custode.isCustode = True
+    utente1 = Utente("Ivan", "Pacenti", " ", " ", "asd", "asd")
+    utente2 = Utente("Nicola", "Picciafuoco", " ", " ", "asd2", "asd2")
+    utente3 = Utente("Giada", "Remedia", " ", " ", "asd3", "asd3")
     collectionUtenti=[]
+    collectionUtenti.append(utente1)
+    collectionUtenti.append(utente2)
+    collectionUtenti.append(utente3)
     collectionUtenti.append(admin)
     collectionUtenti.append(custode)
     loginEffettuato=False

@@ -13,7 +13,7 @@ from PyQt5.QtWidgets import QTableWidgetItem
 
 from Implementazione.Gestione.GestoreUtenti import GestoreUtenti
 from Implementazione.Gestione.GestorePrenotazioni import GestorePrenotazioni
-from Implementazione.Viste.conferma_prenotazione import Ui_conferma_prenotazione
+from Implementazione.Viste.conferma_prenotazione import Ui_conferma
 from Implementazione.Viste.errore_prenotazione import Ui_erroreprenotazione
 from Implementazione.Viste.visualizzazione_liste import Ui_visualizzazioneliste
 from Implementazione.Viste.gestionepartite import Ui_gestionepartite
@@ -22,17 +22,23 @@ from Implementazione.Viste.gestionepartite import Ui_gestionepartite
 class Ui_prenotazioni(object):
 
     def gestionePartite(self):
-        data = str(self.calendario.selectedDate()) \
+        if (self.tabellaprenotazioni.currentItem()==None):
+            self.window_conferma = QtWidgets.QDialog()
+            self.ui_conferma = Ui_conferma()
+            self.ui_conferma.setupUi(self.window_conferma,"Nessuna prenotazione trovata")
+            self.window_conferma.show()
+        else:
+            data = str(self.calendario.selectedDate()) \
             .replace('PyQt5.QtCore.QDate', '') \
             .replace('(', '') \
             .replace(')', '')
-        riga = self.tabellaprenotazioni.currentRow()
-        colonna = self.tabellaprenotazioni.currentColumn()
-        self.window = QtWidgets.QMainWindow()
-        prenotazione=GestorePrenotazioni.cercaPrenotazione(data,riga,colonna)
-        self.ui = Ui_gestionepartite()
-        self.ui.setupUi(self.window,prenotazione)
-        self.window.show()
+            riga = self.tabellaprenotazioni.currentRow()
+            colonna = self.tabellaprenotazioni.currentColumn()
+            self.window = QtWidgets.QMainWindow()
+            prenotazione=GestorePrenotazioni.cercaPrenotazione(data,riga,colonna)
+            self.ui = Ui_gestionepartite()
+            self.ui.setupUi(self.window,prenotazione)
+            self.window.show()
 
     def eliminaPrenotazione(self):
         data = str(self.calendario.selectedDate()) \
@@ -43,10 +49,10 @@ class Ui_prenotazioni(object):
         colonna = self.tabellaprenotazioni.currentColumn()
         # prenotazione se si è loggati come admin
         # prenotazione da utente
-        if (self.tabellaprenotazioni.currentItem().text()==GestoreUtenti.utenteConnesso.nome
+        if (self.tabellaprenotazioni.currentItem()!=None and self.tabellaprenotazioni.currentItem().text()==GestoreUtenti.utenteConnesso.nome
         or GestoreUtenti.utenteConnesso.isAdmin==True):
             self.window_conferma = QtWidgets.QDialog()
-            self.ui_conferma = Ui_conferma_prenotazione()
+            self.ui_conferma = Ui_conferma()
             self.ui_conferma.setupUi(self.window_conferma,"Vuoi eliminare la prenotazione?")
             if (self.window_conferma.exec() == 1):
                 GestorePrenotazioni.eliminaPrenotazione(data, riga, colonna)
@@ -56,7 +62,7 @@ class Ui_prenotazioni(object):
         else:
             self.window_conferma = QtWidgets.QDialog()
             self.ui_conferma = Ui_erroreprenotazione()
-            self.ui_conferma.setupUi(self.window_conferma)
+            self.ui_conferma.setupUi(self.window_conferma,"Nessuna prenotazione\nda eliminare")
             self.window_conferma.show()
 
     def inserisciPrenotazione(self):
@@ -79,8 +85,20 @@ class Ui_prenotazioni(object):
         #prenotazione da utente
         elif (self.tabellaprenotazioni.currentItem() == None):
             self.window_conferma = QtWidgets.QDialog()
-            self.ui_conferma = Ui_conferma_prenotazione()
-            self.ui_conferma.setupUi(self.window_conferma,"Confermi la prenotazione?")
+            self.ui_conferma = Ui_conferma()
+            if colonna == 1 or colonna == 2:
+                if (GestorePrenotazioni.copertura == False):
+                    messaggiocopertura = "ll' aperto!"
+                else:
+                    messaggiocopertura = "l chiuso!"
+            elif colonna == 0:
+                messaggiocopertura = "l chiuso!"
+            elif colonna == 3:
+                messaggiocopertura = "ll' aperto!"
+            self.ui_conferma.setupUi(self.window_conferma,"Confermi la prenotazione?\n"
+                                                          "Ti ricordiamo che in questo periodo\n"
+                                                          "questo campo è a"
+                                     +messaggiocopertura)
             if (self.window_conferma.exec() == 1):
                 GestorePrenotazioni.inserisciPrenotazione(data, riga, colonna,0)
             else:
@@ -89,7 +107,7 @@ class Ui_prenotazioni(object):
         else:
             self.window_conferma = QtWidgets.QDialog()
             self.ui_conferma = Ui_erroreprenotazione()
-            self.ui_conferma.setupUi(self.window_conferma)
+            self.ui_conferma.setupUi(self.window_conferma,"Prenotazione\nnon disponibile")
             self.window_conferma.show()
 
     def visualizzaPrenotazioni(self):
@@ -146,6 +164,7 @@ class Ui_prenotazioni(object):
         self.tabellaprenotazioni.verticalHeader().setDefaultSectionSize(20)
         self.tabellaprenotazioni.setHorizontalHeaderLabels(["Terra Rossa Coperto", "Terra Rossa", "Erba Sintetica", "Paddle"])
         self.tabellaprenotazioni.setVerticalHeaderLabels(self.orari)
+        self.tabellaprenotazioni.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.inserisciprenotazione = QtWidgets.QPushButton(prenotazioni)
         self.inserisciprenotazione.setGeometry(QtCore.QRect(210, 190, 113, 32))
         self.inserisciprenotazione.setObjectName("inserisciprenotazione")

@@ -17,7 +17,7 @@ class GestoreUtenti():
     loginEffettuato=False
     contaUtenti=5
     contaSoci=0
-
+    utenteConnesso=None
 
     def inserisciUtente(Utente):
         GestoreUtenti.collectionUtenti.insert(-GestoreUtenti.contaUtenti, Utente)
@@ -47,6 +47,7 @@ class GestoreUtenti():
 
     def setLogoutEffettuato():
         GestoreUtenti.loginEffettuato = False
+        GestoreUtenti.utenteConnesso=None
 
     def getUtenteConnesso(self):
         return GestoreUtenti.utente

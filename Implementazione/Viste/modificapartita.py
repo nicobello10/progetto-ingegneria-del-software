@@ -11,6 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 from Implementazione.Generali.Partita import Partita
+from Implementazione.Gestione.GestoreUtenti import GestoreUtenti
 
 
 class Ui_modificapartita(object):
@@ -28,57 +29,66 @@ class Ui_modificapartita(object):
 
 
     def setupUi(self, gestionepartite,rigapartita):
-        gestionepartite.setObjectName("gestionepartite")
-        gestionepartite.resize(316, 162)
+        gestionepartite.setObjectName("modificapartita")
+        gestionepartite.resize(326, 189)
+        self.buttonBox = QtWidgets.QDialogButtonBox(gestionepartite)
+        self.buttonBox.setGeometry(QtCore.QRect(70, 130, 171, 32))
+        self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
+        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel | QtWidgets.QDialogButtonBox.Ok)
+        self.buttonBox.setObjectName("buttonBox")
         self.giocatoreuno = QtWidgets.QLineEdit(gestionepartite)
-        self.giocatoreuno.setGeometry(QtCore.QRect(40, 40, 113, 21))
+        self.giocatoreuno.setGeometry(QtCore.QRect(30, 50, 113, 21))
         self.giocatoreuno.setObjectName("giocatoreuno")
-        self.giocatoredue = QtWidgets.QLineEdit(gestionepartite)
-        self.giocatoredue.setGeometry(QtCore.QRect(190, 40, 113, 21))
-        self.giocatoredue.setObjectName("giocatoredue")
-        self.spinuno = QtWidgets.QSpinBox(gestionepartite)
-        self.spinuno.setGeometry(QtCore.QRect(50, 80, 48, 24))
-        self.spinuno.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.spinuno.setMaximum(3)
-        self.spinuno.setObjectName("spinuno")
+        self.labeluno = QtWidgets.QLabel(gestionepartite)
+        self.labeluno.setGeometry(QtCore.QRect(30, 30, 71, 16))
+        self.labeluno.setObjectName("labeluno")
         self.spindue = QtWidgets.QSpinBox(gestionepartite)
-        self.spindue.setGeometry(QtCore.QRect(220, 80, 48, 24))
+        self.spindue.setGeometry(QtCore.QRect(210, 90, 48, 24))
         self.spindue.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.spindue.setMaximum(3)
         self.spindue.setObjectName("spin2")
-        self.labeluno = QtWidgets.QLabel(gestionepartite)
-        self.labeluno.setGeometry(QtCore.QRect(40, 20, 71, 16))
-        self.labeluno.setObjectName("labeluno")
+        self.spinuno = QtWidgets.QSpinBox(gestionepartite)
+        self.spinuno.setGeometry(QtCore.QRect(40, 90, 48, 24))
+        self.spinuno.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.spinuno.setMaximum(3)
+        self.spinuno.setObjectName("spinuno")
         self.labeldue = QtWidgets.QLabel(gestionepartite)
-        self.labeldue.setGeometry(QtCore.QRect(190, 20, 71, 16))
+        self.labeldue.setGeometry(QtCore.QRect(180, 30, 71, 16))
         self.labeldue.setObjectName("labeldue")
-        self.aggiungipartita = QtWidgets.QPushButton(gestionepartite)
-        self.aggiungipartita.setGeometry(QtCore.QRect(110, 120, 113, 32))
-        self.aggiungipartita.setObjectName("aggiungipartita")
+        self.giocatoredue = QtWidgets.QLineEdit(gestionepartite)
+        self.giocatoredue.setGeometry(QtCore.QRect(180, 50, 113, 21))
+        self.giocatoredue.setObjectName("giocatoredue")
+
+        self.retranslateUi(gestionepartite)
+        self.buttonBox.accepted.connect(self.modificaPartita)
+        self.buttonBox.accepted.connect(gestionepartite.accept)  # type: ignore
+        self.buttonBox.rejected.connect(gestionepartite.reject)  # type: ignore
+        QtCore.QMetaObject.connectSlotsByName(gestionepartite)
         from Implementazione.Viste.gestionepartite import Ui_gestionepartite
-        self.giocatoreuno.setText(Ui_gestionepartite.prenotazione.collectionPartite[rigapartita].giocatoreuno)
+        if (GestoreUtenti.utenteConnesso.isAdmin==False):
+            self.giocatoreuno.setText(GestoreUtenti.utenteConnesso.nome)
+            self.giocatoreuno.setEnabled(False)
         self.giocatoredue.setText(Ui_gestionepartite.prenotazione.collectionPartite[rigapartita].giocatoredue)
         self.spinuno.setValue(Ui_gestionepartite.prenotazione.collectionPartite[rigapartita].punteggiouno)
         self.spindue.setValue(Ui_gestionepartite.prenotazione.collectionPartite[rigapartita].punteggiodue)
         Ui_modificapartita.rigapartita=rigapartita
-        self.aggiungipartita.clicked.connect(self.modificaPartita)
 
-        self.retranslateUi(gestionepartite)
-        QtCore.QMetaObject.connectSlotsByName(gestionepartite)
 
-    def retranslateUi(self, gestionepartite):
+
+
+    def retranslateUi(self, modificapartita):
         _translate = QtCore.QCoreApplication.translate
-        gestionepartite.setWindowTitle(_translate("gestionepartite", "Form"))
-        self.labeluno.setText(_translate("gestionepartite", "Giocatore1"))
-        self.labeldue.setText(_translate("gestionepartite", "Giocatore2"))
-        self.aggiungipartita.setText(_translate("gestionepartite", "Aggiungi"))
+        modificapartita.setWindowTitle(_translate("modificapartita", "Dialog"))
+        self.labeluno.setText(_translate("modificapartita", "Giocatore1"))
+        self.labeldue.setText(_translate("modificapartita", "Giocatore2"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    gestionepartite = QtWidgets.QWidget()
+    gestionepartite = QtWidgets.QDialog()
     ui = Ui_modificapartita()
     ui.setupUi(gestionepartite)
     gestionepartite.show()
     sys.exit(app.exec_())
+

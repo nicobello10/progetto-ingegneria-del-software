@@ -21,11 +21,11 @@ class Ui_gestionepartite(object):
 
     def modificaPartita(self):
         self.tabellapartite.currentRow()
-        self.window = QtWidgets.QMainWindow()
+        self.window = QtWidgets.QDialog()
         self.ui = Ui_modificapartita()
         self.ui.setupUi(self.window,self.tabellapartite.currentRow())
         self.window.show()
-        if(self.ui.modificaPartita()):self.window.hide()
+        if(self.window.exec()):self.visualizzaPartite()
 
 
     def aggiungiPartita(self):
@@ -96,6 +96,7 @@ class Ui_gestionepartite(object):
         self.statistiche = QtWidgets.QLineEdit(gestionepartite)
         self.statistiche.setGeometry(QtCore.QRect(250, 150, 113, 21))
         self.statistiche.setObjectName("statistiche")
+        self.statistiche.setReadOnly(True)
         self.labelquattro = QtWidgets.QLabel(gestionepartite)
         self.labelquattro.setGeometry(QtCore.QRect(250, 130, 111, 16))
         self.labelquattro.setObjectName("labelquattro")
@@ -117,7 +118,7 @@ class Ui_gestionepartite(object):
         gestionepartite.setWindowTitle(_translate("gestionepartite", "Form"))
         self.labeluno.setText(_translate("gestionepartite", "Giocatore1"))
         self.labeldue.setText(_translate("gestionepartite", "Giocatore2"))
-        self.labeltre.setText(_translate("gestionepartite", "Partite di:"))
+        self.labeltre.setText(_translate("gestionepartite", "Partite di: "+Ui_gestionepartite.prenotazione.utente.nome))
         self.labelquattro.setText(_translate("gestionepartite", "Tendenza vittorie"))
         self.aggiungipartita.setText(_translate("gestionepartite", "Aggiungi"))
 

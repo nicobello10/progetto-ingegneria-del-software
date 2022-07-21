@@ -28,7 +28,7 @@ class Ui_visualizzazioneliste(object):
         from Implementazione.Viste.registrazione_utente import UI_Iscrizione
         self.window_iscrizione = QtWidgets.QMainWindow()
         self.ui_iscrizione = UI_Iscrizione()
-        self.ui_iscrizione.setupUi(self.window_iscrizione,self.tabellautenti.currentRow())
+        self.ui_iscrizione.setupUi(self.window_iscrizione,self.tabellautenti.currentRow(),True)
         self.window_iscrizione.show()
 
 

@@ -20,7 +20,7 @@ class GestoreUtenti():
 
 
     def inserisciUtente(Utente):
-        GestoreUtenti.collectionUtenti.insert(GestoreUtenti.contaUtenti, Utente)
+        GestoreUtenti.collectionUtenti.insert(-GestoreUtenti.contaUtenti, Utente)
         GestoreUtenti.contaUtenti+=1
 
     def modificaUtente(utente,utentemodificato):

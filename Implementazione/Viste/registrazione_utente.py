@@ -17,12 +17,7 @@ from Implementazione.Viste.modificaIscrizione import Ui_modificaiscrizione
 class UI_Iscrizione(object):
 
     def creaUtente(self):
-        if(self.nome.text() !=""
-                and self.cognome.text()!= ""
-                and self.nomeUtente.text()!= ""
-                and self.password.text() != ""
-                and self.cellulare.text() != ""
-                and self.dataNascita.text() != ""):
+        if(self.nome.text() !="" and self.cognome.text()!= "" and self.nomeUtente.text()!= "" and self.password.text() != "" and self.cellulare.text() != ""and self.dataNascita.text() != ""):
             campoNome=self.nome.text()
             campoCognome=self.cognome.text()
             campoNomeUtente=self.nomeUtente.text()
@@ -63,6 +58,7 @@ class UI_Iscrizione(object):
         GestoreUtenti.modificaUtente(GestoreUtenti.utenteConnesso,utenteModificato)
         self.popupMod()
 
+    #modifica utente da parte dell'admin in gestione organizzazione
     def modificaUtenteAdmin(self):
         idUtente=UI_Iscrizione.idUtente
         print(idUtente)
@@ -77,7 +73,7 @@ class UI_Iscrizione(object):
         self.popupMod()
 
 
-    def setupUi(self, Iscrizione,idUtente):
+    def setupUi(self, Iscrizione,idUtente,gestione):
         UI_Iscrizione.idUtente=idUtente
         Iscrizione.setObjectName("Iscrizione")
         Iscrizione.resize(400, 300)
@@ -130,7 +126,13 @@ class UI_Iscrizione(object):
             self.nomeUtente.setText(GestoreUtenti.utenteConnesso.nomeUtente)
             self.cellulare.setText(GestoreUtenti.utenteConnesso.cellulare)
             self.invia.clicked.connect(self.modificaUtente)
-        elif(GestoreUtenti.loginEffettuato and GestoreUtenti.utenteConnesso.isAdmin==True):
+        elif(GestoreUtenti.loginEffettuato and GestoreUtenti.utenteConnesso.isAdmin==True and gestione==True):
+            self.nome.setText(GestoreUtenti.collectionUtenti[idUtente].nome)
+            self.cognome.setText(GestoreUtenti.collectionUtenti[idUtente].cognome)
+            self.dataNascita.setText(GestoreUtenti.collectionUtenti[idUtente].dataNascita)
+            self.password.setText(GestoreUtenti.collectionUtenti[idUtente].password)
+            self.nomeUtente.setText(GestoreUtenti.collectionUtenti[idUtente].nomeUtente)
+            self.cellulare.setText(GestoreUtenti.collectionUtenti[idUtente].cellulare)
             self.invia.clicked.connect(self.modificaUtenteAdmin)
         else:
             self.invia.clicked.connect(self.creaUtente)

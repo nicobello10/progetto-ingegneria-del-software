@@ -16,7 +16,6 @@ from Implementazione.Viste.logineffettuato import Ui_logineffettuato
 
 
 class Login(object):
-
     def autenticazione(self):
         nomeUtente=self.nomeUtente.text()
         pwd=self.password.text()
@@ -27,8 +26,10 @@ class Login(object):
                 self.loginPopup()
                 self.logIn.setEnabled(False)
                 self.logOut.setEnabled(True)
+                self.iscriviti.setEnabled(False)
                 if x.nomeUtente== "admin" and x.password=="admin":
                     self.modifica.setEnabled(False)
+                    self.iscriviti.setEnabled(True)
                 else:
                     self.modifica.setEnabled(True)
 
@@ -47,12 +48,13 @@ class Login(object):
             self.window_conferma.show()
             self.logIn.setEnabled(True)
             self.logOut.setEnabled(False)
+            self.iscriviti.setEnabled(True)
 
 
     def iscrizione(self):
         self.window_iscrizione = QtWidgets.QMainWindow()
         self.ui_iscrizione = UI_Iscrizione()
-        self.ui_iscrizione.setupUi(self.window_iscrizione,1)
+        self.ui_iscrizione.setupUi(self.window_iscrizione,0)
         self.window_iscrizione.show()
 
     def modificaDati(self):

@@ -29,9 +29,11 @@ class Login(object):
                 self.logIn.setEnabled(False)
                 self.logOut.setEnabled(True)
                 self.iscriviti.setEnabled(False)
-                if x==GestoreUtenti.admin:
+                if x==GestoreUtenti.admin :
                     self.modifica.setEnabled(False)
                     self.iscriviti.setEnabled(True)
+                if(GestoreUtenti.utenteConnesso.isCustode==True):
+                    self.modifica.setEnabled(False)
                 else:
                     self.modifica.setEnabled(True)
         if(GestoreUtenti.utenteConnesso==None):
@@ -69,7 +71,7 @@ class Login(object):
         if (GestoreUtenti.loginEffettuato):
             self.window_iscrizione = QtWidgets.QMainWindow()
             self.ui_iscrizione = UI_Iscrizione()
-            self.ui_iscrizione.setupUi(self.window_iscrizione,0)
+            self.ui_iscrizione.setupUi(self.window_iscrizione,0,False)
             self.window_iscrizione.show()
 
     def setupUi(self, Form):

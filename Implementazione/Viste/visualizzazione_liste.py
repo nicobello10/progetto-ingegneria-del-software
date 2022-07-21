@@ -94,8 +94,7 @@ class Ui_visualizzazioneliste(object):
                 self.tabellautenti.setItem(i, 5, item)
                 item = QTableWidgetItem(str(GestoreUtenti.collectionUtenti[i].getTesseramento()))
                 self.tabellautenti.setItem(i, 6, item)
-
-        self.tabellautenti.doubleClicked.connect(self.selezione)
+        if(GestoreUtenti.utenteConnesso.isAdmin==True): self.tabellautenti.doubleClicked.connect(self.selezione)
 
 
 

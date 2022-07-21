@@ -30,7 +30,9 @@ class Ui_Form(object):
             self.window.show()
 
     def gestioneOrganizzazione(self):
-        if (GestoreUtenti.loginEffettuato == True and GestoreUtenti.utenteConnesso.isAdmin == True):
+        if (GestoreUtenti.loginEffettuato == True
+                and (GestoreUtenti.utenteConnesso.isAdmin == True or
+                    GestoreUtenti.utenteConnesso.isCustode==True)):
             self.window = QtWidgets.QMainWindow()
             self.ui = Ui_gestioneOrganizzazione()
             self.ui.setupUi(self.window)

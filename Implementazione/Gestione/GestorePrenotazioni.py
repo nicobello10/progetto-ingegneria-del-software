@@ -80,6 +80,6 @@ class GestorePrenotazioni():
         if (colonna == 3): campo = GestorePrenotazioni.paddle
         for x in GestorePrenotazioni.collectionPrenotazioni:
             if(x.data==data and x.oraInizio==orario and x.campo==campo
-                    and x.utente==GestoreUtenti.utenteConnesso):
+                    and (x.utente==GestoreUtenti.utenteConnesso or GestoreUtenti.utenteConnesso.isAdmin==True)):
                 return x
             else:pass
